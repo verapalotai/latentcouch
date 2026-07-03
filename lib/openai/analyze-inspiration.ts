@@ -22,7 +22,7 @@ export async function analyzeInspirationImages(images: ImageInput[]): Promise<In
           {
             type: "input_text",
             text:
-              "Analyze these interior inspiration images for furniture shopping. Extract style keywords, palette, materials, shapes, vibe notes, and avoid keywords. Keep the output concise, practical, and shopping-oriented."
+              "Analyze these interior inspiration images for furniture shopping. Extract the overall style keywords, palette, materials, shapes, vibe notes, and avoid keywords. Also return `objects`: the distinct furniture/decor pieces visible in the inspiration, each with the DESIRED attributes shown there (colors, materials, shapes, styleHints, sizeHint) — these describe what the shopper wants to buy. Use consumer-friendly labels (sofa, vanity unit, coffee table, pendant lamp, etc.); do not invent hidden details. Keep everything concise, practical, and shopping-oriented."
           },
           ...images.map((image) => ({
             type: "input_image" as const,

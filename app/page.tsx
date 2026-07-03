@@ -10,6 +10,7 @@ import { StatusBanner } from "@/components/status-banner";
 import { StoreStatusList } from "@/components/store-status-list";
 import { UploadZone } from "@/components/upload-zone";
 import { demoCaptureEnabled, demoFixture } from "@/lib/demo";
+import { intersectShoppableObjects } from "@/lib/shopping-taxonomy";
 import type {
   DetectedObject,
   Inspiration,
@@ -216,7 +217,13 @@ export default function HomePage() {
   const filteredResults = activeRetailerFilter
     ? results.filter((result) => result.retailer === activeRetailerFilter)
     : results;
-  const showDetected = Boolean(roomObjects);
+  // Shoppable = objects in BOTH the room and the inspiration, carrying the inspiration's
+  // desired attributes (we shop for the look you want, not what you already own).
+  const shoppableObjects =
+    roomObjects && inspiration
+      ? intersectShoppableObjects(roomObjects.objects, inspiration.objects ?? [])
+      : [];
+  const showDetected = Boolean(roomObjects && inspiration);
   const showRanked = Boolean(searchPlan) || results.length > 0 || isSearching;
 
   return (
@@ -345,9 +352,9 @@ export default function HomePage() {
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-lg font-semibold">Detected objects</p>
+                    <p className="text-lg font-semibold">Shoppable objects</p>
                     <p className="mt-1 text-sm text-[var(--muted)]">
-                      Pick the item you want to shop for and latentcouch will refresh the plan and the results.
+                      Pieces found in both your room and your inspiration, shown with the look you want. Pick one to shop for it.
                     </p>
                   </div>
                   {roomObjects ? (
@@ -357,16 +364,18 @@ export default function HomePage() {
                   ) : null}
                 </div>
 
-                {roomObjects ? (
-                  <p className="mt-3 text-sm text-[var(--muted)]">{roomObjects.summary}</p>
-                ) : null}
-
                 <div className="mt-4">
-                  <ObjectSelector
-                    objects={roomObjects?.objects || []}
-                    onSelect={selectObject}
-                    selectedId={selectedObject?.id}
-                  />
+                  {shoppableObjects.length ? (
+                    <ObjectSelector
+                      objects={shoppableObjects}
+                      onSelect={selectObject}
+                      selectedId={selectedObject?.id}
+                    />
+                  ) : (
+                    <p className="rounded-[1.25rem] border border-[var(--line)] bg-white/55 p-4 text-sm text-[var(--muted)]">
+                      No pieces overlap between your room and your inspiration photos. Try inspiration images that include the items you want to replace.
+                    </p>
+                  )}
                 </div>
 
                 <div className="mt-6 border-t border-[var(--line)] pt-5">

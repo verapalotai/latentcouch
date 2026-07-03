@@ -266,6 +266,48 @@ export function inferCategoryFromObject(object: Pick<DetectedObject, "label" | "
   return getCategoryDescriptor(match?.category || "generic_furniture");
 }
 
+function normalizeLabel(label: string): string {
+  return label
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/s\b/g, "") // crude singularization
+    .trim();
+}
+
+function labelsOverlap(a: string, b: string): boolean {
+  if (!a || !b) return false;
+  if (a === b || a.includes(b) || b.includes(a)) return true;
+  const tokensA = new Set(a.split(/\s+/).filter((t) => t.length > 2));
+  return b.split(/\s+/).some((token) => token.length > 2 && tokensA.has(token));
+}
+
+// Shoppable = objects present in BOTH the room and the inspiration. We return the
+// *inspiration* object (its desired attributes) for each match, so the search targets the
+// look the user wants rather than what they already own. Matched by canonical category,
+// falling back to label overlap when the category is generic.
+export function intersectShoppableObjects(
+  roomObjects: DetectedObject[],
+  inspirationObjects: DetectedObject[]
+): DetectedObject[] {
+  const roomCategories = new Set(
+    roomObjects
+      .map((object) => inferCategoryFromObject(object).category)
+      .filter((category) => category !== "generic_furniture")
+  );
+  const roomLabels = roomObjects.map((object) => normalizeLabel(object.label));
+
+  return inspirationObjects.filter((inspirationObject) => {
+    const category = inferCategoryFromObject(inspirationObject).category;
+    if (category !== "generic_furniture" && roomCategories.has(category)) {
+      return true;
+    }
+    const label = normalizeLabel(inspirationObject.label);
+    return roomLabels.some((roomLabel) => labelsOverlap(roomLabel, label));
+  });
+}
+
 export function expandSearchTerms(values: string[]) {
   const expanded = values.flatMap((value) => {
     const phrase = value.toLowerCase().trim();

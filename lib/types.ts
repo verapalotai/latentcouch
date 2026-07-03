@@ -27,7 +27,10 @@ export const InspirationSchema = z.object({
   shapeKeywords: z.array(z.string()),
   vibeNotes: z.array(z.string()),
   avoidKeywords: z.array(z.string()),
-  shoppingSummary: z.string()
+  shoppingSummary: z.string(),
+  // Furniture objects visible in the inspiration images, with the *desired* attributes.
+  // Intersected with the room objects to decide what is shoppable.
+  objects: z.array(DetectedObjectSchema)
 });
 
 export const RetailerQuerySchema = z.object({
