@@ -4,6 +4,8 @@ Your approximate nearest couch, found from your couch.
 
 `latentcouch` is a practical furniture-shopping helper. It takes room photos plus inspiration photos, extracts shoppable furniture cues, searches a small set of retailers with Playwright, and ranks first-page product cards that best match the vibe.
 
+![Full demo flow: photo upload, inspiration read, detected objects, search plan, ranked matches](docs/demo-flow.png)
+
 ## Stack
 
 - Next.js App Router
@@ -127,7 +129,7 @@ The main user flow stays intentionally linear:
 
 ## Schemas
 
-Implemented in [`lib/types.ts`](/Users/veronikapalotai/git/latentcouch/lib/types.ts):
+Implemented in [`lib/types.ts`](lib/types.ts):
 
 - `RoomObjectsSchema`
 - `InspirationSchema`
@@ -138,9 +140,9 @@ These back both API validation and OpenAI structured responses.
 
 ## Retailer adapter notes
 
-Each retailer adapter implements the same interface in [`lib/retailers/types.ts`](/Users/veronikapalotai/git/latentcouch/lib/retailers/types.ts).
+Each retailer adapter implements the same interface in [`lib/retailers/types.ts`](lib/retailers/types.ts).
 
-The reusable scraping logic lives in [`lib/retailers/shared.ts`](/Users/veronikapalotai/git/latentcouch/lib/retailers/shared.ts).
+The reusable scraping logic lives in [`lib/retailers/shared.ts`](lib/retailers/shared.ts).
 
 Currently:
 
