@@ -4,7 +4,7 @@ Your approximate nearest couch, found from your couch.
 
 `latentcouch` is a practical furniture-shopping helper. It takes room photos plus inspiration photos, extracts shoppable furniture cues, searches a small set of retailers with Playwright, and ranks first-page product cards that best match the vibe.
 
-![Full demo flow: photo upload, inspiration read, detected objects, search plan, ranked matches](docs/demo-flow.png)
+![Full demo flow: photo upload, inspiration read, detected objects, search plan, ranked matches](docs/demo.png)
 
 This is my first vibe-coded project — built to try the concept and scratch a real itch: having just moved into a new apartment, I'm hunting for all sorts of furniture and didn't want to manually trawl every big furniture store's webshop.
 
