@@ -3,7 +3,7 @@ import type { ProductCandidate } from "@/lib/types";
 export function ProductCard({ product }: { product: ProductCandidate }) {
   return (
     <a
-      className="glass-panel block overflow-hidden rounded-[1.75rem] p-3 transition hover:-translate-y-1"
+      className="glass-panel block rounded-[1.75rem] p-3 transition hover:-translate-y-1"
       href={product.url}
       rel="noreferrer"
       target="_blank"
@@ -22,13 +22,14 @@ export function ProductCard({ product }: { product: ProductCandidate }) {
         <span className="rounded-full bg-white/75 px-3 py-1 text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
           {product.retailer}
         </span>
-        <span className="text-xs text-[var(--muted)]">{Math.round(product.confidence * 100)}% fit</span>
+        <span className="flex items-center gap-1 text-xs text-[var(--muted)]">
+          {Math.round(product.confidence * 100)}% fit
+          <FitReasons reasons={product.matchReasons} />
+        </span>
       </div>
 
       <h3 className="mt-3 line-clamp-2 text-lg font-semibold">{product.title}</h3>
       <p className="mt-2 text-sm text-[var(--accent-strong)]">{product.priceText}</p>
-
-      <p className="mt-3 text-sm text-[var(--muted)]">{product.matchReasons.join(" • ") || "Matched by title and extracted attributes."}</p>
 
       {product.scoreBreakdown &&
       (product.scoreBreakdown.embedding !== undefined ||
@@ -39,6 +40,39 @@ export function ProductCard({ product }: { product: ProductCandidate }) {
         </div>
       ) : null}
     </a>
+  );
+}
+
+function FitReasons({ reasons }: { reasons: string[] }) {
+  const items = reasons.length ? reasons : ["Matched by title and extracted attributes."];
+  return (
+    <span className="group/tip relative inline-flex">
+      <svg
+        aria-hidden="true"
+        className="h-3.5 w-3.5 cursor-help text-[var(--muted)]/70"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M12 11v5M12 8h.01" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+      </svg>
+      <span className="sr-only">Why this fit</span>
+      <span className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 hidden w-56 rounded-xl border border-[var(--line)] bg-white p-2.5 text-left text-[11px] leading-snug font-normal tracking-normal normal-case text-[var(--muted)] shadow-lg group-hover/tip:block">
+        <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--accent-strong)]">
+          Why this fit
+        </span>
+        <span className="flex flex-col gap-1">
+          {items.map((reason, index) => (
+            <span key={index} className="flex gap-1.5">
+              <span aria-hidden="true" className="text-[var(--accent)]">
+                •
+              </span>
+              <span>{reason}</span>
+            </span>
+          ))}
+        </span>
+      </span>
+    </span>
   );
 }
 

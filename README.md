@@ -19,14 +19,20 @@ The pipeline is intentionally linear, one step per API route (all under `app/api
 
 1. **`analyze-room`** — room photos → detected furniture objects with attributes
    (color, material, shape, size), as structured JSON.
-2. **`analyze-inspiration`** — inspiration photos → an "aesthetic profile": style keywords,
-   palette, materials, shapes, and things to avoid.
-3. **`plan-search`** — the selected object + aesthetic profile → a `SearchPlan`: object
-   category, a broad query, must-have / nice-to-have / avoid cues, and per-retailer queries.
-4. **`search-products`** — runs the retailer adapters (headless Chromium via Playwright),
+2. **`analyze-inspiration`** — inspiration photos → an "aesthetic profile" (style keywords,
+   palette, materials, shapes, avoids) **and** the furniture objects visible there, each
+   carrying the *desired* attributes.
+3. **Shoppable objects (client-side)** — the room and inspiration objects are intersected by
+   canonical furniture category (`intersectShoppableObjects` in `lib/shopping-taxonomy.ts`),
+   keeping only pieces present in both — and shown with the *inspiration's* attributes. The
+   point: you shop for the look you want on items you own, not for what's already in the room.
+4. **`plan-search`** — the selected (inspiration) object + aesthetic profile → a `SearchPlan`:
+   object category, a broad query, must-have / nice-to-have / avoid cues, and per-retailer
+   queries.
+5. **`search-products`** — runs the retailer adapters (headless Chromium via Playwright),
    then ranks the scraped candidates (see below) and returns the top matches.
 
-Steps 1–3 use the OpenAI Responses API with Zod-schema structured outputs
+The analysis steps use the OpenAI Responses API with Zod-schema structured outputs
 (`responses.parse` + `zodTextFormat`), so every model response is validated against the
 same schemas the API and UI share (`lib/types.ts`).
 
@@ -130,7 +136,7 @@ app/
 components/            upload, object selector, search-plan card, results grid, product card
 lib/
   types.ts             Zod schemas (RoomObjects, Inspiration, SearchPlan, ProductCandidate)
-  shopping-taxonomy.ts furniture category taxonomy + EN↔HU keyword glossary
+  shopping-taxonomy.ts furniture taxonomy, EN↔HU glossary, room∩inspiration intersection
   openai/              vision analysis, planning, LLM reranker (Responses API)
   ranking/
     rank-candidates.ts lexical scorer
