@@ -10,6 +10,7 @@ import { SearchPlanCard } from "@/components/search-plan-card";
 import { StatusBanner } from "@/components/status-banner";
 import { StoreStatusList } from "@/components/store-status-list";
 import { UploadZone } from "@/components/upload-zone";
+import { demoCaptureEnabled, demoFixture } from "@/lib/demo";
 import type {
   DetectedObject,
   Inspiration,
@@ -57,6 +58,7 @@ export default function HomePage() {
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>(null);
   const [loadingLabel, setLoadingLabel] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isDemo, setIsDemo] = useState(false);
   const resultsRef = useRef<HTMLElement | null>(null);
   const isAnalyzing = loadingPhase === "analyzing";
   const isPlanning = loadingPhase === "planning";
@@ -75,9 +77,47 @@ export default function HomePage() {
     setLoadingPhase(null);
     setLoadingLabel(null);
     setError(null);
+    setIsDemo(false);
+  }
+
+  function loadDemo() {
+    resetSession();
+    startTransition(() => {
+      setRoomObjects(demoFixture.roomObjects);
+      setInspiration(demoFixture.inspiration);
+      setSelectedObject(demoFixture.selectedObject);
+      setSearchPlan(demoFixture.searchPlan);
+      setResults(demoFixture.results);
+      setStatuses(demoFixture.statuses);
+      setIsDemo(true);
+    });
+    requestAnimationFrame(() =>
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    );
+  }
+
+  function downloadDemoFixture() {
+    const captured = {
+      roomObjects,
+      inspiration,
+      selectedObject,
+      searchPlan,
+      results,
+      statuses
+    };
+    const blob = new Blob([JSON.stringify(captured, null, 2)], {
+      type: "application/json"
+    });
+    const href = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = href;
+    anchor.download = "fixture.json";
+    anchor.click();
+    URL.revokeObjectURL(href);
   }
 
   async function runAnalysis() {
+    setIsDemo(false);
     setError(null);
     setLoadingPhase("analyzing");
     setLoadingLabel("Analyzing photos...");
@@ -230,7 +270,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-start">
+        <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
           <button
             className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:opacity-60"
             disabled={!canAnalyze || Boolean(loadingLabel)}
@@ -239,7 +279,32 @@ export default function HomePage() {
           >
             {loadingLabel ? loadingLabel : "Analyze my photos"}
           </button>
+          <button
+            className="rounded-full border border-[var(--line)] bg-white/75 px-5 py-3 text-sm font-semibold text-[var(--muted)] transition hover:bg-white disabled:opacity-60"
+            disabled={Boolean(loadingLabel)}
+            onClick={loadDemo}
+            type="button"
+          >
+            Try the demo
+          </button>
+          {demoCaptureEnabled && results.length > 0 ? (
+            <button
+              className="rounded-full border border-dashed border-[var(--line)] px-5 py-3 text-sm font-semibold text-[var(--muted)] transition hover:bg-white"
+              onClick={downloadDemoFixture}
+              type="button"
+            >
+              ⬇ Save demo fixture
+            </button>
+          ) : null}
         </div>
+
+        {isDemo ? (
+          <StatusBanner tone="neutral">
+            Demo data — a captured session, no live analysis or scraping. Upload your own
+            photos and hit “Analyze my photos” to run the real pipeline (needs an API key,
+            runs locally).
+          </StatusBanner>
+        ) : null}
 
         {error ? <StatusBanner tone="error">{error}</StatusBanner> : null}
         {loadingLabel ? <StatusBanner tone="neutral">{loadingLabel}</StatusBanner> : null}

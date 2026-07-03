@@ -7,3 +7,5 @@ coverage
 playwright-report
 tmp-*.png
 .DS_Store
+
+*.tsbuildinfo

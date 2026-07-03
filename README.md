@@ -6,6 +6,14 @@ Your approximate nearest couch, found from your couch.
 
 ![Full demo flow: photo upload, inspiration read, detected objects, search plan, ranked matches](docs/demo-flow.png)
 
+## Live demo
+
+The deployed app ships with a **"Try the demo"** button that loads a captured session
+(room analysis → inspiration read → search plan → ranked products) entirely client-side —
+no API key, no scraping, instant. Live scraping of the retailers uses Playwright and only
+runs locally (see below); on a serverless host the search step degrades gracefully to the
+search plan plus per-store status.
+
 ## Stack
 
 - Next.js App Router
@@ -61,6 +69,33 @@ Equivalent install commands:
 pnpm add next react react-dom openai zod playwright clsx
 pnpm add -D typescript tailwindcss @tailwindcss/postcss eslint eslint-config-next @types/node @types/react @types/react-dom
 ```
+
+## Deploying (Vercel)
+
+The app deploys as a standard Next.js project. The demo path is fully client-side, so no
+runtime secrets are required just to show it off; add `OPENAI_API_KEY` only if you want the
+live analysis routes to work in production.
+
+1. Push to GitHub and import the repo in the Vercel dashboard (framework auto-detected).
+2. Optional env vars: `OPENAI_API_KEY` (live analysis), and
+   `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` at build time to skip the browser download during
+   install (scraping can't run on serverless anyway; it degrades gracefully).
+3. Deploy. The **"Try the demo"** button works immediately.
+
+Live retailer scraping (Playwright/Chromium) only runs locally or on a container host with
+a real browser; on Vercel the search step returns the plan plus per-store "couldn't fetch"
+statuses rather than erroring.
+
+## Regenerating the demo fixture
+
+The demo loads `lib/demo/fixture.json`. To replace the seed data with a real, high-fidelity
+captured session:
+
+1. Locally, set `NEXT_PUBLIC_ENABLE_DEMO_CAPTURE=1` in `.env.local` and run `pnpm dev`.
+2. Run one real session (upload room + inspiration photos, pick an object, let it scrape).
+3. Click **"⬇ Save demo fixture"** (appears once results load) and save the download over
+   `lib/demo/fixture.json`.
+4. Commit and push — Vercel redeploys automatically.
 
 ## Folder tree
 

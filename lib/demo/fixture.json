@@ -1,0 +1,193 @@
+{
+  "_note": "Seed demo fixture with placeholder imagery. Regenerate from a real local run for full fidelity: set NEXT_PUBLIC_ENABLE_DEMO_CAPTURE=1, run one real session, click 'Save demo fixture', and overwrite this file.",
+  "roomObjects": {
+    "roomType": "living room",
+    "summary": "A bright, mid-century living room with a worn grey sofa, a dark laminate coffee table, and a tired floor lamp. Good light, but the pieces clash in tone and material.",
+    "objects": [
+      {
+        "id": "armchair-1",
+        "label": "Accent armchair",
+        "confidence": 0.92,
+        "attributes": {
+          "colors": ["grey", "charcoal"],
+          "materials": ["fabric", "foam"],
+          "shapes": ["boxy", "low-back"],
+          "styleHints": ["mid-century", "worn"],
+          "sizeHint": "single seat, ~75cm wide"
+        },
+        "notes": ["Fabric is pilling", "Tone clashes with the warmer floor"]
+      },
+      {
+        "id": "sofa-1",
+        "label": "Three-seat sofa",
+        "confidence": 0.89,
+        "attributes": {
+          "colors": ["grey"],
+          "materials": ["fabric"],
+          "shapes": ["boxy"],
+          "styleHints": ["contemporary"],
+          "sizeHint": "~210cm wide"
+        },
+        "notes": ["Cushions have lost structure"]
+      },
+      {
+        "id": "coffee-table-1",
+        "label": "Coffee table",
+        "confidence": 0.85,
+        "attributes": {
+          "colors": ["dark brown", "black"],
+          "materials": ["laminate"],
+          "shapes": ["rectangular"],
+          "styleHints": ["generic"],
+          "sizeHint": "~110x60cm"
+        },
+        "notes": ["Laminate edge is chipping"]
+      },
+      {
+        "id": "floor-lamp-1",
+        "label": "Floor lamp",
+        "confidence": 0.78,
+        "attributes": {
+          "colors": ["black"],
+          "materials": ["metal"],
+          "shapes": ["arc"],
+          "styleHints": ["dated"],
+          "sizeHint": "~150cm tall"
+        },
+        "notes": ["Shade is yellowed"]
+      }
+    ]
+  },
+  "inspiration": {
+    "styleKeywords": ["warm minimalist", "mid-century modern", "scandi"],
+    "colorPalette": ["cream", "oatmeal", "warm oak", "terracotta"],
+    "materials": ["bouclé", "oak", "wool", "brushed brass"],
+    "shapeKeywords": ["rounded", "soft", "organic"],
+    "vibeNotes": ["Calm and tactile", "Layered neutrals with one warm accent", "Natural light celebrated"],
+    "avoidKeywords": ["cold grey", "glossy black", "chrome"],
+    "shoppingSummary": "Swap cold greys for warm neutrals and natural materials: bouclé and oak, soft rounded silhouettes, one terracotta accent."
+  },
+  "selectedObject": {
+    "id": "armchair-1",
+    "label": "Accent armchair",
+    "confidence": 0.92,
+    "attributes": {
+      "colors": ["grey", "charcoal"],
+      "materials": ["fabric", "foam"],
+      "shapes": ["boxy", "low-back"],
+      "styleHints": ["mid-century", "worn"],
+      "sizeHint": "single seat, ~75cm wide"
+    },
+    "notes": ["Fabric is pilling", "Tone clashes with the warmer floor"]
+  },
+  "searchPlan": {
+    "objectLabel": "Accent armchair",
+    "objectCategory": "armchair",
+    "broadQuery": "bouclé accent armchair oak legs cream",
+    "roomContext": "Warm minimalist living room, replacing a worn grey mid-century armchair",
+    "mustHave": ["single seat", "upholstered"],
+    "niceToHave": ["bouclé fabric", "oak or wood legs", "rounded silhouette", "cream or oatmeal"],
+    "avoid": ["cold grey", "chrome legs", "glossy finishes"],
+    "queryRationale": "The inspiration leans warm-minimalist with bouclé and oak, so the query prioritises soft rounded upholstery and natural wood legs while steering away from the room's existing cold greys.",
+    "retailerQueries": [
+      { "retailer": "ikea", "query": "bouclé armchair wood legs" },
+      { "retailer": "bonami", "query": "cream boucle accent chair oak" },
+      { "retailer": "beliani", "query": "rounded fabric armchair natural" },
+      { "retailer": "jysk", "query": "armchair boucle beige" }
+    ]
+  },
+  "results": [
+    {
+      "retailer": "ikea",
+      "title": "OSKARSHAMN Armchair, bouclé off-white",
+      "priceText": "€199",
+      "priceValue": 199,
+      "currency": "EUR",
+      "url": "https://www.ikea.com/",
+      "imageUrl": "https://picsum.photos/seed/latentcouch-ikea-1/400/400",
+      "extractedAttributes": ["bouclé", "off-white", "wooden legs"],
+      "matchReasons": ["Bouclé fabric matches the inspiration", "Warm off-white over cold grey", "Wooden legs echo the oak cue"],
+      "confidence": 0.91,
+      "rawText": "OSKARSHAMN Armchair bouclé off-white €199",
+      "scoreBreakdown": { "lexical": 0.72, "embedding": 0.88, "llm": 0.93, "final": 0.91 }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Cream Bouclé Accent Chair with Oak Legs",
+      "priceText": "€245",
+      "priceValue": 245,
+      "currency": "EUR",
+      "url": "https://www.bonami.eu/",
+      "imageUrl": "https://picsum.photos/seed/latentcouch-bonami-1/400/400",
+      "extractedAttributes": ["cream", "bouclé", "oak legs", "rounded"],
+      "matchReasons": ["Oak legs are a direct palette match", "Rounded silhouette matches the shape cues"],
+      "confidence": 0.88,
+      "rawText": "Cream Bouclé Accent Chair Oak Legs €245",
+      "scoreBreakdown": { "lexical": 0.7, "embedding": 0.85, "llm": 0.9, "final": 0.88 }
+    },
+    {
+      "retailer": "beliani",
+      "title": "VISNES Fabric Armchair, Beige",
+      "priceText": "€279",
+      "priceValue": 279,
+      "currency": "EUR",
+      "url": "https://www.beliani.eu/",
+      "imageUrl": "https://picsum.photos/seed/latentcouch-beliani-1/400/400",
+      "extractedAttributes": ["beige", "fabric", "curved"],
+      "matchReasons": ["Warm beige tone", "Soft curved back matches organic shapes"],
+      "confidence": 0.82,
+      "rawText": "VISNES Fabric Armchair Beige €279",
+      "scoreBreakdown": { "lexical": 0.64, "embedding": 0.8, "llm": 0.85, "final": 0.82 }
+    },
+    {
+      "retailer": "jysk",
+      "title": "GADEVANG Armchair, bouclé sand",
+      "priceText": "€169",
+      "priceValue": 169,
+      "currency": "EUR",
+      "url": "https://www.jysk.com/",
+      "imageUrl": "https://picsum.photos/seed/latentcouch-jysk-1/400/400",
+      "extractedAttributes": ["sand", "bouclé", "metal legs"],
+      "matchReasons": ["Bouclé texture and sand tone fit the palette", "Budget-friendly option"],
+      "confidence": 0.76,
+      "rawText": "GADEVANG Armchair bouclé sand €169",
+      "scoreBreakdown": { "lexical": 0.66, "embedding": 0.78, "llm": 0.79, "final": 0.76 }
+    },
+    {
+      "retailer": "ikea",
+      "title": "STRANDMON Wing Chair, Kelinge oatmeal",
+      "priceText": "€259",
+      "priceValue": 259,
+      "currency": "EUR",
+      "url": "https://www.ikea.com/",
+      "imageUrl": "https://picsum.photos/seed/latentcouch-ikea-2/400/400",
+      "extractedAttributes": ["oatmeal", "wing back", "wooden legs"],
+      "matchReasons": ["Oatmeal is squarely in the palette", "Classic mid-century wing silhouette"],
+      "confidence": 0.74,
+      "rawText": "STRANDMON Wing Chair Kelinge oatmeal €259",
+      "scoreBreakdown": { "lexical": 0.6, "embedding": 0.77, "llm": 0.78, "final": 0.74 }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Terracotta Velvet Armchair",
+      "priceText": "€299",
+      "priceValue": 299,
+      "currency": "EUR",
+      "url": "https://www.bonami.eu/",
+      "imageUrl": "https://picsum.photos/seed/latentcouch-bonami-2/400/400",
+      "extractedAttributes": ["terracotta", "velvet", "brass legs"],
+      "matchReasons": ["Terracotta is the inspiration's accent colour", "Brass legs match the brushed-brass cue"],
+      "confidence": 0.71,
+      "rawText": "Terracotta Velvet Armchair €299",
+      "scoreBreakdown": { "lexical": 0.55, "embedding": 0.74, "llm": 0.76, "final": 0.71 }
+    }
+  ],
+  "statuses": [
+    { "retailer": "ikea", "ok": true, "resultCount": 2 },
+    { "retailer": "bonami", "ok": true, "resultCount": 2 },
+    { "retailer": "beliani", "ok": true, "resultCount": 1 },
+    { "retailer": "jysk", "ok": true, "resultCount": 1 },
+    { "retailer": "xxxlutz", "ok": false, "resultCount": 0, "error": "No matching first-page cards" },
+    { "retailer": "momax", "ok": false, "resultCount": 0, "error": "No matching first-page cards" }
+  ]
+}
