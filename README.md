@@ -6,6 +6,8 @@ Your approximate nearest couch, found from your couch.
 
 ![Full demo flow: photo upload, inspiration read, detected objects, search plan, ranked matches](docs/demo-flow.png)
 
+This is my first vibe-coded project — built to try the concept and scratch a real itch: having just moved into a new apartment, I'm hunting for all sorts of furniture and didn't want to manually trawl every big furniture store's webshop.
+
 ## Live demo
 
 The deployed app ships with a **"Try the demo"** button that loads a captured session
