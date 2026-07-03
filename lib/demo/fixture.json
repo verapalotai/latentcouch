@@ -1,193 +1,559 @@
 {
-  "_note": "Seed demo fixture with placeholder imagery. Regenerate from a real local run for full fidelity: set NEXT_PUBLIC_ENABLE_DEMO_CAPTURE=1, run one real session, click 'Save demo fixture', and overwrite this file.",
+  "_note": "Captured from a real live session (bathroom vanity cabinet). Regenerate via scripts or the capture button. Product images may 404 over time; scores are real reranker output.",
   "roomObjects": {
-    "roomType": "living room",
-    "summary": "A bright, mid-century living room with a worn grey sofa, a dark laminate coffee table, and a tired floor lamp. Good light, but the pieces clash in tone and material.",
+    "roomType": "bathroom",
+    "summary": "This bathroom features essential fixtures and storage spaces suitable for replacement or enhancement.",
     "objects": [
       {
-        "id": "armchair-1",
-        "label": "Accent armchair",
-        "confidence": 0.92,
+        "id": "1",
+        "label": "bathtub",
+        "confidence": 0.9,
         "attributes": {
-          "colors": ["grey", "charcoal"],
-          "materials": ["fabric", "foam"],
-          "shapes": ["boxy", "low-back"],
-          "styleHints": ["mid-century", "worn"],
-          "sizeHint": "single seat, ~75cm wide"
+          "colors": [
+            "white"
+          ],
+          "materials": [
+            "acrylic",
+            "steel"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "modern",
+            "minimalist"
+          ],
+          "sizeHint": "standard"
         },
-        "notes": ["Fabric is pilling", "Tone clashes with the warmer floor"]
+        "notes": []
       },
       {
-        "id": "sofa-1",
-        "label": "Three-seat sofa",
-        "confidence": 0.89,
-        "attributes": {
-          "colors": ["grey"],
-          "materials": ["fabric"],
-          "shapes": ["boxy"],
-          "styleHints": ["contemporary"],
-          "sizeHint": "~210cm wide"
-        },
-        "notes": ["Cushions have lost structure"]
-      },
-      {
-        "id": "coffee-table-1",
-        "label": "Coffee table",
+        "id": "2",
+        "label": "vanity unit",
         "confidence": 0.85,
         "attributes": {
-          "colors": ["dark brown", "black"],
-          "materials": ["laminate"],
-          "shapes": ["rectangular"],
-          "styleHints": ["generic"],
-          "sizeHint": "~110x60cm"
+          "colors": [
+            "white"
+          ],
+          "materials": [
+            "wood",
+            "laminate"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "modern",
+            "functional"
+          ],
+          "sizeHint": "standard"
         },
-        "notes": ["Laminate edge is chipping"]
+        "notes": []
       },
       {
-        "id": "floor-lamp-1",
-        "label": "Floor lamp",
-        "confidence": 0.78,
+        "id": "3",
+        "label": "washing machine",
+        "confidence": 0.8,
         "attributes": {
-          "colors": ["black"],
-          "materials": ["metal"],
-          "shapes": ["arc"],
-          "styleHints": ["dated"],
-          "sizeHint": "~150cm tall"
+          "colors": [
+            "white"
+          ],
+          "materials": [
+            "metal",
+            "plastic"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "appliance"
+          ],
+          "sizeHint": "compact"
         },
-        "notes": ["Shade is yellowed"]
+        "notes": []
+      },
+      {
+        "id": "4",
+        "label": "basket",
+        "confidence": 0.75,
+        "attributes": {
+          "colors": [
+            "green"
+          ],
+          "materials": [
+            "plastic"
+          ],
+          "shapes": [
+            "cylindrical"
+          ],
+          "styleHints": [
+            "functional"
+          ],
+          "sizeHint": "medium"
+        },
+        "notes": []
+      },
+      {
+        "id": "5",
+        "label": "towel rack",
+        "confidence": 0.7,
+        "attributes": {
+          "colors": [
+            "silver"
+          ],
+          "materials": [
+            "metal"
+          ],
+          "shapes": [
+            "linear"
+          ],
+          "styleHints": [
+            "modern"
+          ],
+          "sizeHint": "standard"
+        },
+        "notes": []
+      },
+      {
+        "id": "6",
+        "label": "rug",
+        "confidence": 0.6,
+        "attributes": {
+          "colors": [
+            "green"
+          ],
+          "materials": [
+            "fabric"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "decorative"
+          ],
+          "sizeHint": "small"
+        },
+        "notes": []
       }
     ]
   },
   "inspiration": {
-    "styleKeywords": ["warm minimalist", "mid-century modern", "scandi"],
-    "colorPalette": ["cream", "oatmeal", "warm oak", "terracotta"],
-    "materials": ["bouclé", "oak", "wool", "brushed brass"],
-    "shapeKeywords": ["rounded", "soft", "organic"],
-    "vibeNotes": ["Calm and tactile", "Layered neutrals with one warm accent", "Natural light celebrated"],
-    "avoidKeywords": ["cold grey", "glossy black", "chrome"],
-    "shoppingSummary": "Swap cold greys for warm neutrals and natural materials: bouclé and oak, soft rounded silhouettes, one terracotta accent."
+    "styleKeywords": [
+      "modern",
+      "minimalist",
+      "scandinavian",
+      "organic"
+    ],
+    "colorPalette": [
+      "neutral beige",
+      "soft white",
+      "earthy brown",
+      "black accents"
+    ],
+    "materials": [
+      "wood",
+      "ceramic",
+      "metal",
+      "textiles"
+    ],
+    "shapeKeywords": [
+      "rectangular",
+      "round",
+      "clean lines",
+      "organic shapes"
+    ],
+    "vibeNotes": [
+      "calm",
+      "inviting",
+      "functional",
+      "natural"
+    ],
+    "avoidKeywords": [
+      "overly ornate",
+      "bright colors",
+      "cluttered",
+      "traditional"
+    ],
+    "shoppingSummary": "Look for modern, minimalist bathroom fixtures in neutral tones, such as wood cabinets and ceramic tiles, to create a serene and functional space."
   },
   "selectedObject": {
-    "id": "armchair-1",
-    "label": "Accent armchair",
-    "confidence": 0.92,
+    "id": "2",
+    "label": "vanity unit",
+    "confidence": 0.85,
     "attributes": {
-      "colors": ["grey", "charcoal"],
-      "materials": ["fabric", "foam"],
-      "shapes": ["boxy", "low-back"],
-      "styleHints": ["mid-century", "worn"],
-      "sizeHint": "single seat, ~75cm wide"
+      "colors": [
+        "white"
+      ],
+      "materials": [
+        "wood",
+        "laminate"
+      ],
+      "shapes": [
+        "rectangular"
+      ],
+      "styleHints": [
+        "modern",
+        "functional"
+      ],
+      "sizeHint": "standard"
     },
-    "notes": ["Fabric is pilling", "Tone clashes with the warmer floor"]
+    "notes": []
   },
   "searchPlan": {
-    "objectLabel": "Accent armchair",
-    "objectCategory": "armchair",
-    "broadQuery": "bouclé accent armchair oak legs cream",
-    "roomContext": "Warm minimalist living room, replacing a worn grey mid-century armchair",
-    "mustHave": ["single seat", "upholstered"],
-    "niceToHave": ["bouclé fabric", "oak or wood legs", "rounded silhouette", "cream or oatmeal"],
-    "avoid": ["cold grey", "chrome legs", "glossy finishes"],
-    "queryRationale": "The inspiration leans warm-minimalist with bouclé and oak, so the query prioritises soft rounded upholstery and natural wood legs while steering away from the room's existing cold greys.",
+    "objectLabel": "vanity unit",
+    "objectCategory": "bathroom_vanity",
+    "broadQuery": "fürdőszobai szekrény",
+    "roomContext": "bathroom",
+    "mustHave": [
+      "vanity unit",
+      "vanity",
+      "unit",
+      "mosdó",
+      "mosdószekrény",
+      "mosdó alatti szekrény",
+      "neutral beige",
+      "neutral"
+    ],
+    "niceToHave": [
+      "modern",
+      "minimalist",
+      "scandinavian",
+      "organic",
+      "wood",
+      "fa",
+      "neutral beige",
+      "neutral"
+    ],
+    "avoid": [
+      "lámpa",
+      "asztal",
+      "étkezőasztal",
+      "kanapé",
+      "tükör",
+      "szőnyeg",
+      "overly ornate",
+      "overly"
+    ],
+    "queryRationale": "Use the current room photo to identify the object type, then search broadly for fürdőszobai szekrény and rank results using the inspiration images for color, material, shape, and style direction.",
     "retailerQueries": [
-      { "retailer": "ikea", "query": "bouclé armchair wood legs" },
-      { "retailer": "bonami", "query": "cream boucle accent chair oak" },
-      { "retailer": "beliani", "query": "rounded fabric armchair natural" },
-      { "retailer": "jysk", "query": "armchair boucle beige" }
+      {
+        "retailer": "ikea",
+        "query": "fürdőszobai szekrény"
+      },
+      {
+        "retailer": "bonami",
+        "query": "fürdőszobai szekrény"
+      },
+      {
+        "retailer": "beliani",
+        "query": "fürdőszobai szekrény"
+      },
+      {
+        "retailer": "xxxlutz",
+        "query": "fürdőszobai szekrény"
+      },
+      {
+        "retailer": "momax",
+        "query": "fürdőszobai szekrény"
+      },
+      {
+        "retailer": "mobelix",
+        "query": "fürdőszobai szekrény"
+      },
+      {
+        "retailer": "jysk",
+        "query": "fürdőszobai szekrény"
+      }
     ]
   },
   "results": [
     {
-      "retailer": "ikea",
-      "title": "OSKARSHAMN Armchair, bouclé off-white",
-      "priceText": "€199",
-      "priceValue": 199,
-      "currency": "EUR",
-      "url": "https://www.ikea.com/",
-      "imageUrl": "https://picsum.photos/seed/latentcouch-ikea-1/400/400",
-      "extractedAttributes": ["bouclé", "off-white", "wooden legs"],
-      "matchReasons": ["Bouclé fabric matches the inspiration", "Warm off-white over cold grey", "Wooden legs echo the oak cue"],
-      "confidence": 0.91,
-      "rawText": "OSKARSHAMN Armchair bouclé off-white €199",
-      "scoreBreakdown": { "lexical": 0.72, "embedding": 0.88, "llm": 0.93, "final": 0.91 }
+      "retailer": "bonami",
+      "title": "Krémszínű mosdó alatti szekrény 60x56 cm Arcena – Germania",
+      "priceText": "92 090 Ft",
+      "priceValue": 92090,
+      "currency": "HUF",
+      "url": "https://www.bonami.hu/p/kremszinu-mosdo-alatti-szekreny-60x56-cm-arcena-germania",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/29/0c/290cb7373c67f80a044e142b6629432261e347b8-320x320.jpeg",
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for vanity unit",
+        "Matches 33% of must-have cues",
+        "Exact category: mosdó alatti szekrény, standard 60 cm"
+      ],
+      "confidence": 0.722,
+      "rawText": "GermaniaArcena mosdó alatti szekrényForgácslap, felületkezelés: melamin, krémszínű, szélesség 60 cm, magasság 56 cm, mélység 34 cm (1)Azonnal szállíthatóUtolsó darabok92 090 FtKosárbaKosárbaegyéb változatok",
+      "scoreBreakdown": {
+        "lexical": 0.304,
+        "embedding": 1,
+        "llm": 0.93,
+        "final": 0.722
+      }
     },
     {
       "retailer": "bonami",
-      "title": "Cream Bouclé Accent Chair with Oak Legs",
-      "priceText": "€245",
-      "priceValue": 245,
-      "currency": "EUR",
-      "url": "https://www.bonami.eu/",
-      "imageUrl": "https://picsum.photos/seed/latentcouch-bonami-1/400/400",
-      "extractedAttributes": ["cream", "bouclé", "oak legs", "rounded"],
-      "matchReasons": ["Oak legs are a direct palette match", "Rounded silhouette matches the shape cues"],
-      "confidence": 0.88,
-      "rawText": "Cream Bouclé Accent Chair Oak Legs €245",
-      "scoreBreakdown": { "lexical": 0.7, "embedding": 0.85, "llm": 0.9, "final": 0.88 }
-    },
-    {
-      "retailer": "beliani",
-      "title": "VISNES Fabric Armchair, Beige",
-      "priceText": "€279",
-      "priceValue": 279,
-      "currency": "EUR",
-      "url": "https://www.beliani.eu/",
-      "imageUrl": "https://picsum.photos/seed/latentcouch-beliani-1/400/400",
-      "extractedAttributes": ["beige", "fabric", "curved"],
-      "matchReasons": ["Warm beige tone", "Soft curved back matches organic shapes"],
-      "confidence": 0.82,
-      "rawText": "VISNES Fabric Armchair Beige €279",
-      "scoreBreakdown": { "lexical": 0.64, "embedding": 0.8, "llm": 0.85, "final": 0.82 }
-    },
-    {
-      "retailer": "jysk",
-      "title": "GADEVANG Armchair, bouclé sand",
-      "priceText": "€169",
-      "priceValue": 169,
-      "currency": "EUR",
-      "url": "https://www.jysk.com/",
-      "imageUrl": "https://picsum.photos/seed/latentcouch-jysk-1/400/400",
-      "extractedAttributes": ["sand", "bouclé", "metal legs"],
-      "matchReasons": ["Bouclé texture and sand tone fit the palette", "Budget-friendly option"],
-      "confidence": 0.76,
-      "rawText": "GADEVANG Armchair bouclé sand €169",
-      "scoreBreakdown": { "lexical": 0.66, "embedding": 0.78, "llm": 0.79, "final": 0.76 }
-    },
-    {
-      "retailer": "ikea",
-      "title": "STRANDMON Wing Chair, Kelinge oatmeal",
-      "priceText": "€259",
-      "priceValue": 259,
-      "currency": "EUR",
-      "url": "https://www.ikea.com/",
-      "imageUrl": "https://picsum.photos/seed/latentcouch-ikea-2/400/400",
-      "extractedAttributes": ["oatmeal", "wing back", "wooden legs"],
-      "matchReasons": ["Oatmeal is squarely in the palette", "Classic mid-century wing silhouette"],
-      "confidence": 0.74,
-      "rawText": "STRANDMON Wing Chair Kelinge oatmeal €259",
-      "scoreBreakdown": { "lexical": 0.6, "embedding": 0.77, "llm": 0.78, "final": 0.74 }
-    },
-    {
-      "retailer": "bonami",
-      "title": "Terracotta Velvet Armchair",
-      "priceText": "€299",
-      "priceValue": 299,
-      "currency": "EUR",
-      "url": "https://www.bonami.eu/",
-      "imageUrl": "https://picsum.photos/seed/latentcouch-bonami-2/400/400",
-      "extractedAttributes": ["terracotta", "velvet", "brass legs"],
-      "matchReasons": ["Terracotta is the inspiration's accent colour", "Brass legs match the brushed-brass cue"],
+      "title": "Natúr színű fali szekrény mosdókagyló nélkül tölgyfa dekorral 53x60 cm Quickset 318 – Pelipal",
+      "priceText": "61 820 Ft",
+      "priceValue": 61820,
+      "currency": "HUF",
+      "url": "https://www.bonami.hu/p/natur-szinu-fali-szekreny-mosdokagylo-nelkul-tolgyfa-dekorral-53x60-cm-quickset-318-pelipal",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/d4/24/d4244a22a40b7d6f2cb907a5e0a5e445665311a8-320x320.jpeg",
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Tracks the selected object language for vanity unit",
+        "Picks up inspiration cues like modern, minimalist",
+        "Correct functional category: fali szekrény mosdókagyló nélkül for under-sink use",
+        "Natural wood decor strongly matches organic/Scandi wood preference"
+      ],
       "confidence": 0.71,
-      "rawText": "Terracotta Velvet Armchair €299",
-      "scoreBreakdown": { "lexical": 0.55, "embedding": 0.74, "llm": 0.76, "final": 0.71 }
+      "rawText": "-20%PelipalQuickset 318 szekrény mosdókagyló nélkülFali, tölgyfa dekorral, forgácslap, felületkezelés: melamin, matt dekorral, natúr színű, szélesség 53 cm, magasság 60 cm, mélység 33 cmAzonnal szállíthatóUtolsó darabok61 820 Ft77 290 FtKosárbaKosárba",
+      "scoreBreakdown": {
+        "lexical": 0.277,
+        "embedding": 0.999,
+        "llm": 0.77,
+        "final": 0.71
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Fehér mosdókagyló alatti szekrény tölgyfa dekorral 60x56 cm Torrance - Germania",
+      "priceText": "Price unavailable",
+      "priceValue": null,
+      "currency": "N/A",
+      "url": "https://www.bonami.hu/p/feher-mosdokagylo-alatti-szekreny-tolgyfa-dekorral-60x56-cm-torrance-germania",
+      "imageUrl": null,
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for vanity unit",
+        "Matches 33% of must-have cues",
+        "Correct category: mosdókagyló alatti szekrény 60x56 cm"
+      ],
+      "confidence": 0.696,
+      "rawText": "+2",
+      "scoreBreakdown": {
+        "lexical": 0.284,
+        "embedding": 0.97,
+        "llm": 0.84,
+        "final": 0.696
+      }
+    },
+    {
+      "retailer": "ikea",
+      "title": "Fehér NYSJÖN magas fürdőszobaszekrény egy ajtóval és fém lábakkal.",
+      "priceText": "Price unavailable",
+      "priceValue": null,
+      "currency": "N/A",
+      "url": "https://www.ikea.com/hu/hu/p/nysjoen-magasszekreny-feher-20470815/",
+      "imageUrl": "https://www.ikea.com/hu/hu/images/products/nysjoen-magasszekreny-feher__0971572_pe811380_s5.jpg?f=xxs",
+      "extractedAttributes": [
+        "fürdőszoba",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Tracks the selected object language for vanity unit",
+        "Looks aligned with bathroom use",
+        "Wrong type: tall storage cabinet, not vanity/under-sink unit",
+        "Bathroom-appropriate but not a mosdó/mosdó alatti szekrény"
+      ],
+      "confidence": 0.607,
+      "rawText": "Fehér NYSJÖN magas fürdőszobaszekrény egy ajtóval és fém lábakkal.",
+      "scoreBreakdown": {
+        "lexical": 0.21,
+        "embedding": 0.871,
+        "llm": 0.35,
+        "final": 0.607
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Sötétszürke mosdókagyló alatti szekrény tölgyfa dekorral 60x56 cm Salinas - Germania",
+      "priceText": "Price unavailable",
+      "priceValue": null,
+      "currency": "N/A",
+      "url": "https://www.bonami.hu/p/sotetszurke-mosdokagylo-alatti-szekreny-tolgyfa-dekorral-60x56-cm-salinas-germania",
+      "imageUrl": null,
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for vanity unit",
+        "Matches 33% of must-have cues",
+        "Correct category: mosdókagyló alatti szekrény 60x56 cm"
+      ],
+      "confidence": 0.549,
+      "rawText": "+2",
+      "scoreBreakdown": {
+        "lexical": 0.284,
+        "embedding": 0.725,
+        "llm": 0.8,
+        "final": 0.549
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Antracitszürke mosdó alatti szekrény 60x56 cm Arcena – Germania",
+      "priceText": "Price unavailable",
+      "priceValue": null,
+      "currency": "N/A",
+      "url": "https://www.bonami.hu/p/antracitszurke-mosdo-alatti-szekreny-60x56-cm-arcena-germania",
+      "imageUrl": null,
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for vanity unit",
+        "Matches 33% of must-have cues"
+      ],
+      "confidence": 0.504,
+      "rawText": "Antracitszürke mosdó alatti szekrény 60x56 cm Arcena – Germania",
+      "scoreBreakdown": {
+        "lexical": 0.264,
+        "final": 0.504,
+        "embedding": 0.664
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Krémszínű alacsony mosdó alatti szekrény 60x56 cm Salinas – Germania",
+      "priceText": "96 290 Ft",
+      "priceValue": 96290,
+      "currency": "HUF",
+      "url": "https://www.bonami.hu/p/kremszinu-alacsony-mosdo-alatti-szekreny-60x56-cm-salinas-germania",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/d9/9e/d99e3db4b01c2babd6214e22d750b8f9af2c15fd-320x320.jpeg",
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for vanity unit",
+        "Matches 33% of must-have cues",
+        "Exact category: mosdó alatti szekrény, standard 60 cm"
+      ],
+      "confidence": 0.377,
+      "rawText": "-10%GermaniaSalinas mosdó alatti szekrényAlacsony, forgácslap, felületkezelés: melamin, matt dekorral, krémszínű, szélesség 60 cm, magasság 56 cm, mélység 34 cm (5)Azonnal szállítható96 290 Ft106 990 FtKosárbaKosárbaegyéb változatok+2+ Méretek (2)",
+      "scoreBreakdown": {
+        "lexical": 0.304,
+        "embedding": 0.426,
+        "llm": 0.96,
+        "final": 0.377
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Fehér mosdókagyló alatti szekrény 60x56 cm Salinas - Germania",
+      "priceText": "Price unavailable",
+      "priceValue": null,
+      "currency": "N/A",
+      "url": "https://www.bonami.hu/p/feher-mosdokagylo-alatti-szekreny-60x56-cm-salinas-germania",
+      "imageUrl": null,
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for vanity unit",
+        "Matches 33% of must-have cues",
+        "Correct category: mosdókagyló alatti szekrény 60x56 cm"
+      ],
+      "confidence": 0.267,
+      "rawText": "+2",
+      "scoreBreakdown": {
+        "lexical": 0.27,
+        "embedding": 0.265,
+        "llm": 0.86,
+        "final": 0.267
+      }
+    },
+    {
+      "retailer": "ikea",
+      "title": "Fehér ENHET faliszekrény két polccal a fürdőszobába vagy a konyhába.",
+      "priceText": "Price unavailable",
+      "priceValue": null,
+      "currency": "N/A",
+      "url": "https://www.ikea.com/hu/hu/p/enhet-faliszekreny-2-polccal-ajtoval-feher-s19320978/",
+      "imageUrl": "https://www.ikea.com/hu/hu/images/products/enhet-faliszekreny-2-polccal-ajtoval-feher__0816094_pe773318_s5.jpg?f=xxs",
+      "extractedAttributes": [
+        "szekrény",
+        "polc"
+      ],
+      "matchReasons": [
+        "Tracks the selected object language for vanity unit",
+        "Looks aligned with bathroom use",
+        "Wrong type: wall cabinet with shelves, not vanity unit",
+        "Can be used in bathroom but not under-sink"
+      ],
+      "confidence": 0.083,
+      "rawText": "Fehér ENHET faliszekrény két polccal a fürdőszobába vagy a konyhába.",
+      "scoreBreakdown": {
+        "lexical": 0.208,
+        "embedding": 0,
+        "llm": 0.32,
+        "final": 0.083
+      }
     }
   ],
   "statuses": [
-    { "retailer": "ikea", "ok": true, "resultCount": 2 },
-    { "retailer": "bonami", "ok": true, "resultCount": 2 },
-    { "retailer": "beliani", "ok": true, "resultCount": 1 },
-    { "retailer": "jysk", "ok": true, "resultCount": 1 },
-    { "retailer": "xxxlutz", "ok": false, "resultCount": 0, "error": "No matching first-page cards" },
-    { "retailer": "momax", "ok": false, "resultCount": 0, "error": "No matching first-page cards" }
+    {
+      "retailer": "ikea",
+      "ok": true,
+      "resultCount": 8
+    },
+    {
+      "retailer": "bonami",
+      "ok": true,
+      "resultCount": 8
+    },
+    {
+      "retailer": "beliani",
+      "ok": false,
+      "resultCount": 0,
+      "error": "Beliani search is too noisy for this category, open the store search instead.",
+      "manualSearchUrl": "https://www.beliani.hu/search/?query=f%C3%BCrd%C5%91szobai%20szekr%C3%A9ny"
+    },
+    {
+      "retailer": "xxxlutz",
+      "ok": false,
+      "resultCount": 0,
+      "error": "XXXLutz is challenge-gating automated scraping right now. Open the store search.",
+      "manualSearchUrl": "https://www.xxxlutz.hu/search?query=f%C3%BCrd%C5%91szobai%20szekr%C3%A9ny"
+    },
+    {
+      "retailer": "momax",
+      "ok": false,
+      "resultCount": 0,
+      "error": "Mömax is challenge-gating automated scraping right now. Open the store search.",
+      "manualSearchUrl": "https://www.moemax.hu/kereses?query=f%C3%BCrd%C5%91szobai%20szekr%C3%A9ny"
+    },
+    {
+      "retailer": "mobelix",
+      "ok": false,
+      "resultCount": 0,
+      "error": "Möbelix is challenge-gating automated scraping right now. Open the store search.",
+      "manualSearchUrl": "https://www.moebelix.hu/kereses?query=f%C3%BCrd%C5%91szobai%20szekr%C3%A9ny"
+    },
+    {
+      "retailer": "jysk",
+      "ok": false,
+      "resultCount": 0,
+      "error": "JYSK search is available, but this MVP currently opens the store search instead of scraping it.",
+      "manualSearchUrl": "https://jysk.hu/search?query=f%C3%BCrd%C5%91szobai%20szekr%C3%A9ny"
+    }
   ]
 }
