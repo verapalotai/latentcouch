@@ -1,8 +1,8 @@
 {
-  "_note": "Captured from a real live session (bathroom vanity cabinet). Regenerate via scripts or the capture button. Product images may 404 over time; scores are real reranker output.",
+  "_note": "Captured from a real live session (bathroom, vanity unit). Shoppable objects = room ∩ inspiration, shown with inspiration attributes. Regenerate via capture; scores are real reranker output.",
   "roomObjects": {
     "roomType": "bathroom",
-    "summary": "This bathroom features essential fixtures and storage spaces suitable for replacement or enhancement.",
+    "summary": "A standard bathroom with essential fixtures and storage.",
     "objects": [
       {
         "id": "1",
@@ -13,15 +13,13 @@
             "white"
           ],
           "materials": [
-            "acrylic",
-            "steel"
+            "acrylic"
           ],
           "shapes": [
-            "rectangular"
+            "rectangle"
           ],
           "styleHints": [
-            "modern",
-            "minimalist"
+            "modern"
           ],
           "sizeHint": "standard"
         },
@@ -29,7 +27,28 @@
       },
       {
         "id": "2",
-        "label": "vanity unit",
+        "label": "washbasin",
+        "confidence": 0.9,
+        "attributes": {
+          "colors": [
+            "white"
+          ],
+          "materials": [
+            "ceramic"
+          ],
+          "shapes": [
+            "rectangle"
+          ],
+          "styleHints": [
+            "modern"
+          ],
+          "sizeHint": "standard"
+        },
+        "notes": []
+      },
+      {
+        "id": "3",
+        "label": "vanity cabinet",
         "confidence": 0.85,
         "attributes": {
           "colors": [
@@ -40,42 +59,19 @@
             "laminate"
           ],
           "shapes": [
-            "rectangular"
+            "rectangle"
           ],
           "styleHints": [
-            "modern",
-            "functional"
+            "modern"
           ],
-          "sizeHint": "standard"
-        },
-        "notes": []
-      },
-      {
-        "id": "3",
-        "label": "washing machine",
-        "confidence": 0.8,
-        "attributes": {
-          "colors": [
-            "white"
-          ],
-          "materials": [
-            "metal",
-            "plastic"
-          ],
-          "shapes": [
-            "rectangular"
-          ],
-          "styleHints": [
-            "appliance"
-          ],
-          "sizeHint": "compact"
+          "sizeHint": "medium"
         },
         "notes": []
       },
       {
         "id": "4",
-        "label": "basket",
-        "confidence": 0.75,
+        "label": "storage basket",
+        "confidence": 0.8,
         "attributes": {
           "colors": [
             "green"
@@ -84,7 +80,7 @@
             "plastic"
           ],
           "shapes": [
-            "cylindrical"
+            "rectangle"
           ],
           "styleHints": [
             "functional"
@@ -95,29 +91,8 @@
       },
       {
         "id": "5",
-        "label": "towel rack",
-        "confidence": 0.7,
-        "attributes": {
-          "colors": [
-            "silver"
-          ],
-          "materials": [
-            "metal"
-          ],
-          "shapes": [
-            "linear"
-          ],
-          "styleHints": [
-            "modern"
-          ],
-          "sizeHint": "standard"
-        },
-        "notes": []
-      },
-      {
-        "id": "6",
-        "label": "rug",
-        "confidence": 0.6,
+        "label": "floor mat",
+        "confidence": 0.75,
         "attributes": {
           "colors": [
             "green"
@@ -126,12 +101,77 @@
             "fabric"
           ],
           "shapes": [
-            "rectangular"
+            "rectangle"
           ],
           "styleHints": [
-            "decorative"
+            "soft",
+            "functional"
           ],
           "sizeHint": "small"
+        },
+        "notes": []
+      },
+      {
+        "id": "6",
+        "label": "towel rack",
+        "confidence": 0.7,
+        "attributes": {
+          "colors": [
+            "chrome"
+          ],
+          "materials": [
+            "metal"
+          ],
+          "shapes": [
+            "straight"
+          ],
+          "styleHints": [
+            "modern"
+          ],
+          "sizeHint": "small"
+        },
+        "notes": []
+      },
+      {
+        "id": "7",
+        "label": "showerhead",
+        "confidence": 0.8,
+        "attributes": {
+          "colors": [
+            "chrome"
+          ],
+          "materials": [
+            "metal"
+          ],
+          "shapes": [
+            "round"
+          ],
+          "styleHints": [
+            "modern"
+          ],
+          "sizeHint": "small"
+        },
+        "notes": []
+      },
+      {
+        "id": "8",
+        "label": "washing machine",
+        "confidence": 0.85,
+        "attributes": {
+          "colors": [
+            "white"
+          ],
+          "materials": [
+            "metal",
+            "plastic"
+          ],
+          "shapes": [
+            "rectangle"
+          ],
+          "styleHints": [
+            "functional"
+          ],
+          "sizeHint": "standard"
         },
         "notes": []
       }
@@ -141,88 +181,220 @@
     "styleKeywords": [
       "modern",
       "minimalist",
-      "scandinavian",
-      "organic"
+      "natural",
+      "scandinavian"
     ],
     "colorPalette": [
-      "neutral beige",
-      "soft white",
-      "earthy brown",
-      "black accents"
+      "beige",
+      "brown",
+      "white",
+      "black",
+      "green"
     ],
     "materials": [
       "wood",
+      "stone",
       "ceramic",
-      "metal",
-      "textiles"
+      "metal"
     ],
     "shapeKeywords": [
       "rectangular",
       "round",
-      "clean lines",
-      "organic shapes"
+      "organic"
     ],
     "vibeNotes": [
       "calm",
       "inviting",
-      "functional",
-      "natural"
+      "clean",
+      "functional"
     ],
     "avoidKeywords": [
-      "overly ornate",
-      "bright colors",
-      "cluttered",
-      "traditional"
+      "ornate",
+      "heavy",
+      "dark"
     ],
-    "shoppingSummary": "Look for modern, minimalist bathroom fixtures in neutral tones, such as wood cabinets and ceramic tiles, to create a serene and functional space."
+    "shoppingSummary": "Looking for modern bathroom furniture with a light, natural palette and minimalistic design.",
+    "objects": [
+      {
+        "id": "vanity_unit",
+        "label": "Vanity Unit",
+        "confidence": 0.95,
+        "attributes": {
+          "colors": [
+            "brown",
+            "white"
+          ],
+          "materials": [
+            "wood",
+            "ceramic"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "modern",
+            "minimalist"
+          ],
+          "sizeHint": "medium"
+        },
+        "notes": [
+          "Storage drawers",
+          "Clean lines"
+        ]
+      },
+      {
+        "id": "shower",
+        "label": "Shower",
+        "confidence": 0.9,
+        "attributes": {
+          "colors": [
+            "black"
+          ],
+          "materials": [
+            "glass",
+            "metal"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "modern",
+            "functional"
+          ],
+          "sizeHint": "large"
+        },
+        "notes": [
+          "Walk-in design",
+          "Black fixtures"
+        ]
+      },
+      {
+        "id": "shelf",
+        "label": "Wall Shelf",
+        "confidence": 0.85,
+        "attributes": {
+          "colors": [
+            "brown"
+          ],
+          "materials": [
+            "wood"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "natural",
+            "minimalist"
+          ],
+          "sizeHint": "small"
+        },
+        "notes": [
+          "Open storage",
+          "Decorative items"
+        ]
+      },
+      {
+        "id": "mirror",
+        "label": "Round Mirror",
+        "confidence": 0.92,
+        "attributes": {
+          "colors": [
+            "black"
+          ],
+          "materials": [
+            "metal"
+          ],
+          "shapes": [
+            "round"
+          ],
+          "styleHints": [
+            "modern",
+            "scandinavian"
+          ],
+          "sizeHint": "medium"
+        },
+        "notes": [
+          "Frameless design"
+        ]
+      },
+      {
+        "id": "bathmat",
+        "label": "Bath Mat",
+        "confidence": 0.88,
+        "attributes": {
+          "colors": [
+            "white"
+          ],
+          "materials": [
+            "fabric"
+          ],
+          "shapes": [
+            "rectangular"
+          ],
+          "styleHints": [
+            "soft",
+            "neutral"
+          ],
+          "sizeHint": "small"
+        },
+        "notes": [
+          "Textured surface",
+          "Cozy"
+        ]
+      }
+    ]
   },
   "selectedObject": {
-    "id": "2",
-    "label": "vanity unit",
-    "confidence": 0.85,
+    "id": "vanity_unit",
+    "label": "Vanity Unit",
+    "confidence": 0.95,
     "attributes": {
       "colors": [
+        "brown",
         "white"
       ],
       "materials": [
         "wood",
-        "laminate"
+        "ceramic"
       ],
       "shapes": [
         "rectangular"
       ],
       "styleHints": [
         "modern",
-        "functional"
+        "minimalist"
       ],
-      "sizeHint": "standard"
+      "sizeHint": "medium"
     },
-    "notes": []
+    "notes": [
+      "Storage drawers",
+      "Clean lines"
+    ]
   },
   "searchPlan": {
-    "objectLabel": "vanity unit",
+    "objectLabel": "Vanity Unit",
     "objectCategory": "bathroom_vanity",
     "broadQuery": "fürdőszobai szekrény",
     "roomContext": "bathroom",
     "mustHave": [
+      "Vanity Unit",
       "vanity unit",
       "vanity",
-      "unit",
       "mosdó",
       "mosdószekrény",
       "mosdó alatti szekrény",
-      "neutral beige",
-      "neutral"
+      "beige",
+      "bézs"
     ],
     "niceToHave": [
       "modern",
       "minimalist",
+      "natural",
       "scandinavian",
-      "organic",
       "wood",
       "fa",
-      "neutral beige",
-      "neutral"
+      "beige",
+      "bézs"
     ],
     "avoid": [
       "lámpa",
@@ -231,8 +403,8 @@
       "kanapé",
       "tükör",
       "szőnyeg",
-      "overly ornate",
-      "overly"
+      "ornate",
+      "heavy"
     ],
     "queryRationale": "Use the current room photo to identify the object type, then search broadly for fürdőszobai szekrény and rank results using the inspiration images for color, material, shape, and style direction.",
     "retailerQueries": [
@@ -269,65 +441,38 @@
   "results": [
     {
       "retailer": "bonami",
-      "title": "Krémszínű mosdó alatti szekrény 60x56 cm Arcena – Germania",
-      "priceText": "92 090 Ft",
-      "priceValue": 92090,
+      "title": "Natúr színű fali mosdó alatti szekrény kőrisfa dekorral 90x35 cm Salaya – Kave Home",
+      "priceText": "164 380 Ft",
+      "priceValue": 164380,
       "currency": "HUF",
-      "url": "https://www.bonami.hu/p/kremszinu-mosdo-alatti-szekreny-60x56-cm-arcena-germania",
-      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/29/0c/290cb7373c67f80a044e142b6629432261e347b8-320x320.jpeg",
+      "url": "https://www.bonami.hu/p/natur-szinu-fali-mosdo-alatti-szekreny-korisfa-dekorral-90x35-cm-salaya-kave-home",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/50/b5/50b56ca045a2f7cc26fc8550aabdce12b208d42b-320x320.jpeg",
       "extractedAttributes": [
         "mosdó",
         "szekrény"
       ],
       "matchReasons": [
         "Title matches the target product category",
-        "Tracks the selected object language for vanity unit",
-        "Matches 33% of must-have cues",
-        "Exact category: mosdó alatti szekrény, standard 60 cm"
+        "Tracks the selected object language for Vanity Unit",
+        "Matches 38% of must-have cues",
+        "Mosdó alatti fali szekrény, funkcionálisan tökéletesen illeszkedik"
       ],
-      "confidence": 0.722,
-      "rawText": "GermaniaArcena mosdó alatti szekrényForgácslap, felületkezelés: melamin, krémszínű, szélesség 60 cm, magasság 56 cm, mélység 34 cm (1)Azonnal szállíthatóUtolsó darabok92 090 FtKosárbaKosárbaegyéb változatok",
+      "confidence": 0.728,
+      "rawText": "PremiumKave HomeSalaya mosdó alatti szekrényFali, kőrisfa dekorral, MDF, felületkezelés: furnér-felületkezelés: lakkozás, natúr színű, szélesség 90 cm, magasság 35 cm, mélység 45 cm (1)Azonnal szállíthatóUtolsó darab164 380 FtKosárbaKosárbaegyéb változatok",
       "scoreBreakdown": {
-        "lexical": 0.304,
+        "lexical": 0.321,
         "embedding": 1,
-        "llm": 0.93,
-        "final": 0.722
+        "llm": 0.9,
+        "final": 0.728
       }
     },
     {
       "retailer": "bonami",
-      "title": "Natúr színű fali szekrény mosdókagyló nélkül tölgyfa dekorral 53x60 cm Quickset 318 – Pelipal",
-      "priceText": "61 820 Ft",
-      "priceValue": 61820,
-      "currency": "HUF",
-      "url": "https://www.bonami.hu/p/natur-szinu-fali-szekreny-mosdokagylo-nelkul-tolgyfa-dekorral-53x60-cm-quickset-318-pelipal",
-      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/d4/24/d4244a22a40b7d6f2cb907a5e0a5e445665311a8-320x320.jpeg",
-      "extractedAttributes": [
-        "mosdó",
-        "szekrény"
-      ],
-      "matchReasons": [
-        "Tracks the selected object language for vanity unit",
-        "Picks up inspiration cues like modern, minimalist",
-        "Correct functional category: fali szekrény mosdókagyló nélkül for under-sink use",
-        "Natural wood decor strongly matches organic/Scandi wood preference"
-      ],
-      "confidence": 0.71,
-      "rawText": "-20%PelipalQuickset 318 szekrény mosdókagyló nélkülFali, tölgyfa dekorral, forgácslap, felületkezelés: melamin, matt dekorral, natúr színű, szélesség 53 cm, magasság 60 cm, mélység 33 cmAzonnal szállíthatóUtolsó darabok61 820 Ft77 290 FtKosárbaKosárba",
-      "scoreBreakdown": {
-        "lexical": 0.277,
-        "embedding": 0.999,
-        "llm": 0.77,
-        "final": 0.71
-      }
-    },
-    {
-      "retailer": "bonami",
-      "title": "Fehér mosdókagyló alatti szekrény tölgyfa dekorral 60x56 cm Torrance - Germania",
+      "title": "Bézs fali mosdó alatti szekrény 90x35 cm Salaya – Kave Home",
       "priceText": "Price unavailable",
       "priceValue": null,
       "currency": "N/A",
-      "url": "https://www.bonami.hu/p/feher-mosdokagylo-alatti-szekreny-tolgyfa-dekorral-60x56-cm-torrance-germania",
+      "url": "https://www.bonami.hu/p/bezs-fali-mosdo-alatti-szekreny-90x35-cm-salaya-kave-home",
       "imageUrl": null,
       "extractedAttributes": [
         "mosdó",
@@ -335,17 +480,71 @@
       ],
       "matchReasons": [
         "Title matches the target product category",
-        "Tracks the selected object language for vanity unit",
-        "Matches 33% of must-have cues",
-        "Correct category: mosdókagyló alatti szekrény 60x56 cm"
+        "Tracks the selected object language for Vanity Unit",
+        "Matches 50% of must-have cues",
+        "Kifejezetten mosdó alatti szekrény, pontosan a keresett kategória"
       ],
-      "confidence": 0.696,
-      "rawText": "+2",
+      "confidence": 0.618,
+      "rawText": "Bézs fali mosdó alatti szekrény 90x35 cm Salaya – Kave Home",
       "scoreBreakdown": {
-        "lexical": 0.284,
-        "embedding": 0.97,
+        "lexical": 0.301,
+        "embedding": 0.829,
+        "llm": 0.96,
+        "final": 0.618
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Natúr színű alacsony fali teakfa mosdó alatti szekrény 120x40 cm Yenit – Kave Home",
+      "priceText": "299 180 Ft",
+      "priceValue": 299180,
+      "currency": "HUF",
+      "url": "https://www.bonami.hu/p/natur-szinu-alacsony-fali-teakfa-mosdo-alatti-szekreny-120x40-cm-yenit-kave-home",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/16/fd/16fd8cb2ac819063f45768775a307fac175c093b-320x320.jpeg",
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for Vanity Unit",
+        "Matches 38% of must-have cues",
+        "Mosdó alatti fali szekrény, teljesen megfelelő funkció"
+      ],
+      "confidence": 0.613,
+      "rawText": "PremiumKave HomeYenit mosdó alatti szekrényFali, teakfa, felületkezelés: lakkozás, natúr színű, szélesség 120 cm, magasság 40 cm, mélység 45 cm (4)Azonnal szállíthatóUtolsó darabok299 180 FtKosárbaKosárba",
+      "scoreBreakdown": {
+        "lexical": 0.316,
+        "embedding": 0.812,
         "llm": 0.84,
-        "final": 0.696
+        "final": 0.613
+      }
+    },
+    {
+      "retailer": "bonami",
+      "title": "Sötétbarna teakfa fali mosdó alatti szekrény 90x40 cm Kenta – Kave Home",
+      "priceText": "272 970 Ft",
+      "priceValue": 272970,
+      "currency": "HUF",
+      "url": "https://www.bonami.hu/p/sotetbarna-teakfa-fali-mosdo-alatti-szekreny-90x40-cm-kenta-kave-home",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/8e/2c/8e2c3a98d7911476cf8920ae13eadaef3b2fb600-320x320.jpeg",
+      "extractedAttributes": [
+        "mosdó",
+        "szekrény"
+      ],
+      "matchReasons": [
+        "Title matches the target product category",
+        "Tracks the selected object language for Vanity Unit",
+        "Matches 38% of must-have cues",
+        "Fali mosdó alatti szekrény, jó funkcionális egyezés"
+      ],
+      "confidence": 0.431,
+      "rawText": "PremiumKave HomeKenta mosdó alatti szekrényFali, teakfa, felületkezelés: lakkozás, sötétbarna, szélesség 90 cm, magasság 40 cm, mélység 45 cm (1)Azonnal szállíthatóUtolsó darabok272 970 FtKosárbaKosárbaegyéb változatok+ Méretek (2)",
+      "scoreBreakdown": {
+        "lexical": 0.316,
+        "embedding": 0.508,
+        "llm": 0.78,
+        "final": 0.431
       }
     },
     {
@@ -361,106 +560,54 @@
         "szekrény"
       ],
       "matchReasons": [
-        "Tracks the selected object language for vanity unit",
+        "Tracks the selected object language for Vanity Unit",
         "Looks aligned with bathroom use",
-        "Wrong type: tall storage cabinet, not vanity/under-sink unit",
-        "Bathroom-appropriate but not a mosdó/mosdó alatti szekrény"
+        "Fürdőszobaszekrény, de magas állószekrény, nem mosdó alatti egység",
+        "Funkcionálisan kiegészítő tárolónak jó, de nem váltja ki a keresett vanity unitot"
       ],
-      "confidence": 0.607,
+      "confidence": 0.386,
       "rawText": "Fehér NYSJÖN magas fürdőszobaszekrény egy ajtóval és fém lábakkal.",
       "scoreBreakdown": {
-        "lexical": 0.21,
-        "embedding": 0.871,
+        "lexical": 0.212,
+        "embedding": 0.502,
         "llm": 0.35,
-        "final": 0.607
+        "final": 0.386
       }
     },
     {
       "retailer": "bonami",
-      "title": "Sötétszürke mosdókagyló alatti szekrény tölgyfa dekorral 60x56 cm Salinas - Germania",
-      "priceText": "Price unavailable",
-      "priceValue": null,
-      "currency": "N/A",
-      "url": "https://www.bonami.hu/p/sotetszurke-mosdokagylo-alatti-szekreny-tolgyfa-dekorral-60x56-cm-salinas-germania",
-      "imageUrl": null,
-      "extractedAttributes": [
-        "mosdó",
-        "szekrény"
-      ],
-      "matchReasons": [
-        "Title matches the target product category",
-        "Tracks the selected object language for vanity unit",
-        "Matches 33% of must-have cues",
-        "Correct category: mosdókagyló alatti szekrény 60x56 cm"
-      ],
-      "confidence": 0.549,
-      "rawText": "+2",
-      "scoreBreakdown": {
-        "lexical": 0.284,
-        "embedding": 0.725,
-        "llm": 0.8,
-        "final": 0.549
-      }
-    },
-    {
-      "retailer": "bonami",
-      "title": "Antracitszürke mosdó alatti szekrény 60x56 cm Arcena – Germania",
-      "priceText": "Price unavailable",
-      "priceValue": null,
-      "currency": "N/A",
-      "url": "https://www.bonami.hu/p/antracitszurke-mosdo-alatti-szekreny-60x56-cm-arcena-germania",
-      "imageUrl": null,
-      "extractedAttributes": [
-        "mosdó",
-        "szekrény"
-      ],
-      "matchReasons": [
-        "Title matches the target product category",
-        "Tracks the selected object language for vanity unit",
-        "Matches 33% of must-have cues"
-      ],
-      "confidence": 0.504,
-      "rawText": "Antracitszürke mosdó alatti szekrény 60x56 cm Arcena – Germania",
-      "scoreBreakdown": {
-        "lexical": 0.264,
-        "final": 0.504,
-        "embedding": 0.664
-      }
-    },
-    {
-      "retailer": "bonami",
-      "title": "Krémszínű alacsony mosdó alatti szekrény 60x56 cm Salinas – Germania",
-      "priceText": "96 290 Ft",
-      "priceValue": 96290,
+      "title": "Taciana mosdókagyló alatti teakfa szekrény - Kave Home",
+      "priceText": "156 890 Ft",
+      "priceValue": 156890,
       "currency": "HUF",
-      "url": "https://www.bonami.hu/p/kremszinu-alacsony-mosdo-alatti-szekreny-60x56-cm-salinas-germania",
-      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/d9/9e/d99e3db4b01c2babd6214e22d750b8f9af2c15fd-320x320.jpeg",
+      "url": "https://www.bonami.hu/p/taciana-mosdokagylo-alatti-teakfa-szekreny-kave-home",
+      "imageUrl": "https://1.bonami.hu/images/fit-crop-fill/f5/46/f546ba09a28b6cf0c13e4d5a7973db894f666c6f-320x320.jpeg",
       "extractedAttributes": [
         "mosdó",
         "szekrény"
       ],
       "matchReasons": [
         "Title matches the target product category",
-        "Tracks the selected object language for vanity unit",
-        "Matches 33% of must-have cues",
-        "Exact category: mosdó alatti szekrény, standard 60 cm"
+        "Tracks the selected object language for Vanity Unit",
+        "Matches 38% of must-have cues",
+        "Mosdó alatti fali szekrény, megfelelő kategória"
       ],
-      "confidence": 0.377,
-      "rawText": "-10%GermaniaSalinas mosdó alatti szekrényAlacsony, forgácslap, felületkezelés: melamin, matt dekorral, krémszínű, szélesség 60 cm, magasság 56 cm, mélység 34 cm (5)Azonnal szállítható96 290 Ft106 990 FtKosárbaKosárbaegyéb változatok+2+ Méretek (2)",
+      "confidence": 0.276,
+      "rawText": "PremiumKave HomeTaciana mosdó alatti szekrényFali, teakfa, felületkezelés: lakkozás, matt dekorral, natúr színű, szélesség 60 cm, magasság 40 cm, mélység 41 cm (13)Azonnal szállíthatóUtolsó darabok156 890 FtKosárbaKosárba",
       "scoreBreakdown": {
-        "lexical": 0.304,
-        "embedding": 0.426,
-        "llm": 0.96,
-        "final": 0.377
+        "lexical": 0.316,
+        "embedding": 0.25,
+        "llm": 0.86,
+        "final": 0.276
       }
     },
     {
       "retailer": "bonami",
-      "title": "Fehér mosdókagyló alatti szekrény 60x56 cm Salinas - Germania",
+      "title": "Barna teakfa fali mosdó alatti szekrény 90x40 cm Kenta – Kave Home",
       "priceText": "Price unavailable",
       "priceValue": null,
       "currency": "N/A",
-      "url": "https://www.bonami.hu/p/feher-mosdokagylo-alatti-szekreny-60x56-cm-salinas-germania",
+      "url": "https://www.bonami.hu/p/barna-teakfa-fali-mosdo-alatti-szekreny-90x40-cm-kenta-kave-home",
       "imageUrl": null,
       "extractedAttributes": [
         "mosdó",
@@ -468,17 +615,17 @@
       ],
       "matchReasons": [
         "Title matches the target product category",
-        "Tracks the selected object language for vanity unit",
-        "Matches 33% of must-have cues",
-        "Correct category: mosdókagyló alatti szekrény 60x56 cm"
+        "Tracks the selected object language for Vanity Unit",
+        "Matches 38% of must-have cues",
+        "Barna teakfa fali mosdó alatti szekrény – kategória és használat pontosan jó"
       ],
-      "confidence": 0.267,
-      "rawText": "+2",
+      "confidence": 0.273,
+      "rawText": "Barna teakfa fali mosdó alatti szekrény 90x40 cm Kenta – Kave Home",
       "scoreBreakdown": {
-        "lexical": 0.27,
-        "embedding": 0.265,
-        "llm": 0.86,
-        "final": 0.267
+        "lexical": 0.276,
+        "embedding": 0.271,
+        "llm": 0.8,
+        "final": 0.273
       }
     },
     {
@@ -494,18 +641,18 @@
         "polc"
       ],
       "matchReasons": [
-        "Tracks the selected object language for vanity unit",
+        "Tracks the selected object language for Vanity Unit",
         "Looks aligned with bathroom use",
-        "Wrong type: wall cabinet with shelves, not vanity unit",
-        "Can be used in bathroom but not under-sink"
+        "Faliszekrény, nem mosdó alatti szekrény – kategóriaeltérés",
+        "Fürdőszobába is jó lehet kiegészítőként, de nem vanity unit"
       ],
-      "confidence": 0.083,
+      "confidence": 0.084,
       "rawText": "Fehér ENHET faliszekrény két polccal a fürdőszobába vagy a konyhába.",
       "scoreBreakdown": {
-        "lexical": 0.208,
+        "lexical": 0.211,
         "embedding": 0,
-        "llm": 0.32,
-        "final": 0.083
+        "llm": 0.3,
+        "final": 0.084
       }
     }
   ],
