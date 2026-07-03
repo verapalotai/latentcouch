@@ -9,3 +9,6 @@ tmp-*.png
 .DS_Store
 
 *.tsbuildinfo
+
+# local test-input images (rooms / inspiration), not for the repo
+docs/demo_*/
