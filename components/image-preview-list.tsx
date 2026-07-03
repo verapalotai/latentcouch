@@ -4,10 +4,9 @@ import { useEffect, useMemo } from "react";
 
 type ImagePreviewListProps = {
   files: File[];
-  emptyText: string;
 };
 
-export function ImagePreviewList({ files, emptyText }: ImagePreviewListProps) {
+export function ImagePreviewList({ files }: ImagePreviewListProps) {
   const previews = useMemo(() => files.map((file) => URL.createObjectURL(file)), [files]);
 
   useEffect(() => {
@@ -17,11 +16,7 @@ export function ImagePreviewList({ files, emptyText }: ImagePreviewListProps) {
   }, [previews]);
 
   if (!files.length) {
-    return (
-      <div className="mt-3 rounded-[1.25rem] border border-[var(--line)] bg-white/55 p-3 text-sm text-[var(--muted)]">
-        {emptyText}
-      </div>
-    );
+    return null;
   }
 
   return (

@@ -286,6 +286,55 @@ export function expandSearchTerms(values: string[]) {
   return uniqueStrings(expanded);
 }
 
+// Only the Hungarian translations for a set of English cues, used to show shoppers
+// which localized terms we search regional stores (Bonami, Möbelix, XXXLutz) with.
+export function toLocalizedKeywords(values: string[]) {
+  const hungarian = values.flatMap((value) => {
+    const phrase = value.toLowerCase().trim();
+    const tokens = phrase
+      .split(/[\s,/()-]+/)
+      .map((token) => token.trim())
+      .filter(Boolean);
+
+    return [
+      ...(TRANSLATION_MAP[phrase] || []),
+      ...tokens.flatMap((token) => TRANSLATION_MAP[token] || [])
+    ];
+  });
+
+  return uniqueStrings(hungarian);
+}
+
+// Every Hungarian term the taxonomy can emit (translation values + no-accent
+// category words that the diacritic check below would miss).
+const LOCALIZED_TERMS = new Set<string>([
+  ...Object.values(TRANSLATION_MAP).flat().map((term) => term.toLowerCase()),
+  "asztal",
+  "kanape",
+  "szonyeg"
+]);
+
+// Terms that read identically in both languages — keep them in the English sections.
+const SHARED_TERMS = new Set<string>(["modern"]);
+
+// True when a keyword is a Hungarian/localized term rather than an original English cue.
+export function isLocalizedKeyword(term: string): boolean {
+  const value = term.toLowerCase().trim();
+  if (SHARED_TERMS.has(value)) return false;
+  if (LOCALIZED_TERMS.has(value)) return true;
+  return /[áéíóöőúüű]/.test(value);
+}
+
+// Split a keyword list into its original (English) cues and its localized (Hungarian) ones.
+export function partitionKeywords(values: string[]) {
+  const original: string[] = [];
+  const localized: string[] = [];
+  for (const value of values) {
+    (isLocalizedKeyword(value) ? localized : original).push(value);
+  }
+  return { original: uniqueStrings(original), localized: uniqueStrings(localized) };
+}
+
 export function buildLocalSearchPlan(
   selectedObject: DetectedObject,
   inspiration: Inspiration,

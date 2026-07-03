@@ -1,7 +1,6 @@
 "use client";
 
 import { startTransition, useRef, useState } from "react";
-import { ActivityIndicator } from "@/components/activity-indicator";
 import { ImagePreviewList } from "@/components/image-preview-list";
 import { InspirationSummary } from "@/components/inspiration-summary";
 import { ObjectSelector } from "@/components/object-selector";
@@ -58,8 +57,9 @@ export default function HomePage() {
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>(null);
   const [loadingLabel, setLoadingLabel] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isDemo, setIsDemo] = useState(false);
+  const [demoToast, setDemoToast] = useState(false);
   const resultsRef = useRef<HTMLElement | null>(null);
+  const inspirationRef = useRef<HTMLDivElement | null>(null);
   const isAnalyzing = loadingPhase === "analyzing";
   const isPlanning = loadingPhase === "planning";
   const isSearching = loadingPhase === "searching";
@@ -77,7 +77,7 @@ export default function HomePage() {
     setLoadingPhase(null);
     setLoadingLabel(null);
     setError(null);
-    setIsDemo(false);
+    setDemoToast(false);
   }
 
   function loadDemo() {
@@ -89,7 +89,7 @@ export default function HomePage() {
       setSearchPlan(demoFixture.searchPlan);
       setResults(demoFixture.results);
       setStatuses(demoFixture.statuses);
-      setIsDemo(true);
+      setDemoToast(true);
     });
     requestAnimationFrame(() =>
       resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -117,7 +117,7 @@ export default function HomePage() {
   }
 
   async function runAnalysis() {
-    setIsDemo(false);
+    setDemoToast(false);
     setError(null);
     setLoadingPhase("analyzing");
     setLoadingLabel("Analyzing photos...");
@@ -137,6 +137,9 @@ export default function HomePage() {
         setStatuses([]);
         setActiveRetailerFilter(null);
       });
+      requestAnimationFrame(() =>
+        inspirationRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      );
     } catch (caughtError) {
       setError(caughtError instanceof Error ? caughtError.message : "Failed to analyze images");
     } finally {
@@ -213,9 +216,12 @@ export default function HomePage() {
   const filteredResults = activeRetailerFilter
     ? results.filter((result) => result.retailer === activeRetailerFilter)
     : results;
+  const showDetected = Boolean(roomObjects);
+  const showRanked = Boolean(searchPlan) || results.length > 0 || isSearching;
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      {loadingLabel ? <div className="top-loader" aria-hidden="true" /> : null}
       <section className="glass-panel overflow-hidden rounded-[2.5rem] p-6 sm:p-8">
         <div className="flex items-start justify-between gap-6">
           <div className="max-w-3xl">
@@ -230,20 +236,49 @@ export default function HomePage() {
 
           <button
             aria-label="Reset session"
-            className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border border-[var(--line)] bg-white/75 text-[var(--muted)] transition hover:bg-white disabled:opacity-50"
+            className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-full border border-[var(--line)] bg-white/75 text-[var(--muted)] transition hover:bg-white disabled:opacity-50"
             disabled={Boolean(loadingLabel)}
             onClick={resetSession}
             type="button"
           >
-            <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24">
+            <svg
+              aria-hidden="true"
+              className="h-[18px] w-[18px]"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
               <path
-                d="M20 11a8 8 0 1 1-2.34-5.66M20 4v7h-7"
+                d="M3 12a9 9 0 1 0 3-6.7L3 8"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.8"
+              />
+              <path
+                d="M3 3v5h5"
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="1.8"
               />
             </svg>
+          </button>
+        </div>
+
+        <div className="mt-6 flex justify-end">
+          <button
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--accent-strong)] disabled:opacity-60"
+            disabled={Boolean(loadingLabel)}
+            onClick={loadDemo}
+            type="button"
+          >
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24">
+              <path
+                d="M8 5v14l11-7z"
+                fill="currentColor"
+              />
+            </svg>
+            Try the demo
           </button>
         </div>
       </section>
@@ -257,7 +292,7 @@ export default function HomePage() {
               label="Room photos"
               onChange={setRoomFiles}
             />
-            <ImagePreviewList emptyText="Room previews appear here." files={roomFiles} />
+            <ImagePreviewList files={roomFiles} />
           </div>
           <div>
             <UploadZone
@@ -266,11 +301,11 @@ export default function HomePage() {
               label="Inspiration photos"
               onChange={setInspirationFiles}
             />
-            <ImagePreviewList emptyText="Inspiration previews appear here." files={inspirationFiles} />
+            <ImagePreviewList files={inspirationFiles} />
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
+        <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
           <button
             className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)] disabled:opacity-60"
             disabled={!canAnalyze || Boolean(loadingLabel)}
@@ -278,14 +313,6 @@ export default function HomePage() {
             type="button"
           >
             {loadingLabel ? loadingLabel : "Analyze my photos"}
-          </button>
-          <button
-            className="rounded-full border border-[var(--line)] bg-white/75 px-5 py-3 text-sm font-semibold text-[var(--muted)] transition hover:bg-white disabled:opacity-60"
-            disabled={Boolean(loadingLabel)}
-            onClick={loadDemo}
-            type="button"
-          >
-            Try the demo
           </button>
           {demoCaptureEnabled && results.length > 0 ? (
             <button
@@ -298,52 +325,63 @@ export default function HomePage() {
           ) : null}
         </div>
 
-        {isDemo ? (
-          <StatusBanner tone="neutral">
-            Demo data — a captured session, no live analysis or scraping. Upload your own
-            photos and hit “Analyze my photos” to run the real pipeline (needs an API key,
-            runs locally).
-          </StatusBanner>
-        ) : null}
-
         {error ? <StatusBanner tone="error">{error}</StatusBanner> : null}
-        {loadingLabel ? <StatusBanner tone="neutral">{loadingLabel}</StatusBanner> : null}
-        {loadingLabel ? <ActivityIndicator label={loadingLabel} /> : null}
 
-        {inspiration || isAnalyzing ? (
-          <InspirationSummary inspiration={inspiration} loading={isAnalyzing && !inspiration} />
+        {inspiration || isAnalyzing || showDetected ? (
+          <section className="glass-panel rounded-[2rem] p-6">
+            {inspiration || isAnalyzing ? (
+              <div ref={inspirationRef} className="scroll-mt-6">
+                <InspirationSummary inspiration={inspiration} loading={isAnalyzing && !inspiration} />
+              </div>
+            ) : null}
+
+            {showDetected ? (
+              <div
+                className={
+                  inspiration || isAnalyzing
+                    ? "mt-6 border-t border-[var(--line)] pt-6"
+                    : ""
+                }
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-lg font-semibold">Detected objects</p>
+                    <p className="mt-1 text-sm text-[var(--muted)]">
+                      Pick the item you want to shop for and latentcouch will refresh the plan and the results.
+                    </p>
+                  </div>
+                  {roomObjects ? (
+                    <span className="rounded-full bg-white/75 px-3 py-1 text-xs text-[var(--muted)]">
+                      {roomObjects.roomType}
+                    </span>
+                  ) : null}
+                </div>
+
+                {roomObjects ? (
+                  <p className="mt-3 text-sm text-[var(--muted)]">{roomObjects.summary}</p>
+                ) : null}
+
+                <div className="mt-4">
+                  <ObjectSelector
+                    objects={roomObjects?.objects || []}
+                    onSelect={selectObject}
+                    selectedId={selectedObject?.id}
+                  />
+                </div>
+
+                <div className="mt-6 border-t border-[var(--line)] pt-5">
+                  <SearchPlanCard
+                    plan={searchPlan}
+                    loading={isPlanning && !searchPlan}
+                    onChange={setSearchPlan}
+                  />
+                </div>
+              </div>
+            ) : null}
+          </section>
         ) : null}
 
-        <section className="glass-panel rounded-[2rem] p-5">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-lg font-semibold">Detected objects</p>
-              <p className="mt-1 text-sm text-[var(--muted)]">
-                Pick the item you want to shop for and latentcouch will refresh the plan and the results.
-              </p>
-            </div>
-            {roomObjects ? (
-              <span className="rounded-full bg-white/75 px-3 py-1 text-xs text-[var(--muted)]">
-                {roomObjects.roomType}
-              </span>
-            ) : null}
-          </div>
-
-          {roomObjects ? <p className="mt-3 text-sm text-[var(--muted)]">{roomObjects.summary}</p> : null}
-
-          <div className="mt-4">
-            <ObjectSelector
-              objects={roomObjects?.objects || []}
-              onSelect={selectObject}
-              selectedId={selectedObject?.id}
-            />
-          </div>
-
-          <div className="mt-5">
-            <SearchPlanCard plan={searchPlan} loading={isPlanning && !searchPlan} />
-          </div>
-        </section>
-
+        {showRanked ? (
         <section ref={resultsRef}>
           <div className="mb-3 flex items-center justify-between gap-4">
             <div>
@@ -373,7 +411,47 @@ export default function HomePage() {
             <ResultsGrid results={filteredResults} loading={isSearching && results.length === 0} />
           </div>
         </section>
+        ) : null}
       </section>
+
+      {demoToast ? (
+        <div className="fixed inset-x-4 bottom-4 z-50 flex justify-center sm:inset-x-auto sm:right-6 sm:bottom-6 sm:justify-end">
+          <div className="glass-panel flex max-w-md items-start gap-3 rounded-2xl border border-[var(--line)] p-4 shadow-lg">
+            <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent-strong)]">
+              <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
+                <path
+                  d="M12 8h.01M11 12h1v4h1"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+            </span>
+            <p className="text-sm text-[var(--muted)]">
+              <span className="font-semibold text-[var(--accent-strong)]">Demo data</span> — a
+              captured session, no live analysis or scraping. Upload your own photos and hit
+              “Analyze my photos” to run the real pipeline (needs an API key, runs locally).
+            </p>
+            <button
+              aria-label="Dismiss"
+              className="ml-1 flex h-7 w-7 flex-none items-center justify-center rounded-full text-[var(--muted)] transition hover:bg-black/5"
+              onClick={() => setDemoToast(false)}
+              type="button"
+            >
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24">
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="1.8"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }
