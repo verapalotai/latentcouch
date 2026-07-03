@@ -1,7 +1,12 @@
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import type { DetectedObject, Inspiration, ProductCandidate, SearchPlan } from "@/lib/types";
-import { getOpenAIClient, getOpenAIEmbeddingModel, getOpenAIRerankModel } from "./client";
+import { getOpenAIClient, getOpenAIRerankModel } from "./client";
+import {
+  buildQueryDocument,
+  isEmbeddingRerankEnabled,
+  rerankByEmbedding
+} from "@/lib/ranking/embedding-rerank";
 import { clamp, uniqueStrings } from "@/lib/utils";
 
 const ProductRerankSchema = z.object({
@@ -31,12 +36,11 @@ export async function rerankProductCandidates({
     return [];
   }
 
-  const embeddingReranked = await scoreWithEmbeddings({
-    plan,
-    selectedObject,
-    inspiration,
-    candidates
-  });
+  // Local embedding rerank is opt-in on the server (see isEmbeddingRerankEnabled); when
+  // off, candidates keep their lexical order and the optional LLM pass runs on top.
+  const embeddingReranked = isEmbeddingRerankEnabled()
+    ? await rerankByEmbedding({ plan, selectedObject, inspiration, candidates })
+    : candidates;
 
   const shortlist = embeddingReranked.slice(0, 12);
   const llmReranked = await scoreWithLLMReranker({
@@ -77,54 +81,6 @@ export async function rerankProductCandidates({
       } satisfies ProductCandidate;
     })
     .sort((left, right) => right.confidence - left.confidence);
-}
-
-async function scoreWithEmbeddings({
-  plan,
-  selectedObject,
-  inspiration,
-  candidates
-}: RerankInput): Promise<ProductCandidate[]> {
-  const client = getOpenAIClient();
-
-  if (!client) {
-    return candidates;
-  }
-
-  try {
-    const queryDocument = buildQueryDocument(plan, selectedObject, inspiration);
-    const candidateDocuments = candidates.map((candidate) => buildCandidateDocument(candidate));
-    const response = await client.embeddings.create({
-      model: getOpenAIEmbeddingModel(),
-      input: [queryDocument, ...candidateDocuments],
-      encoding_format: "float"
-    });
-
-    const [queryEmbedding, ...candidateEmbeddings] = response.data.map((item) => item.embedding);
-    const rawSimilarities = candidateEmbeddings.map((embedding) => cosineSimilarity(queryEmbedding, embedding));
-    const normalizedSimilarities = normalizeRange(rawSimilarities);
-
-    return candidates
-      .map((candidate, index) => {
-        const lexical = candidate.scoreBreakdown?.lexical ?? candidate.confidence;
-        const embedding = normalizedSimilarities[index] ?? 0;
-        const final = clamp(lexical * 0.55 + embedding * 0.45);
-
-        return {
-          ...candidate,
-          confidence: Number(final.toFixed(3)),
-          scoreBreakdown: {
-            ...candidate.scoreBreakdown,
-            lexical: Number(lexical.toFixed(3)),
-            embedding: Number(embedding.toFixed(3)),
-            final: Number(final.toFixed(3))
-          }
-        } satisfies ProductCandidate;
-      })
-      .sort((left, right) => right.confidence - left.confidence);
-  } catch {
-    return candidates;
-  }
 }
 
 async function scoreWithLLMReranker({
@@ -218,43 +174,6 @@ async function scoreWithLLMReranker({
   }
 }
 
-function buildQueryDocument(
-  plan: SearchPlan,
-  selectedObject?: DetectedObject | null,
-  inspiration?: Inspiration | null
-) {
-  return [
-    `Object label: ${plan.objectLabel}`,
-    `Object category: ${plan.objectCategory}`,
-    `Broad search query: ${plan.broadQuery}`,
-    `Room context: ${plan.roomContext}`,
-    `Must have: ${plan.mustHave.join(", ")}`,
-    `Nice to have: ${plan.niceToHave.join(", ")}`,
-    `Avoid: ${plan.avoid.join(", ")}`,
-    `Retailer queries: ${plan.retailerQueries.map((entry) => `${entry.retailer}: ${entry.query}`).join(" | ")}`,
-    selectedObject
-      ? `Current room object: use this only to preserve the target object identity and rough scale. Label ${selectedObject.label}; size hint ${selectedObject.attributes.sizeHint}; notes ${selectedObject.notes.join(", ")}`
-      : "",
-    inspiration
-      ? `Inspiration style: ${inspiration.styleKeywords.join(", ")}; palette ${inspiration.colorPalette.join(", ")}; materials ${inspiration.materials.join(", ")}; shapes ${inspiration.shapeKeywords.join(", ")}; vibe ${inspiration.vibeNotes.join(", ")}; avoid ${inspiration.avoidKeywords.join(", ")}`
-      : ""
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
-
-function buildCandidateDocument(candidate: ProductCandidate) {
-  return [
-    `Retailer: ${candidate.retailer}`,
-    `Title: ${candidate.title}`,
-    `Price: ${candidate.priceText}`,
-    `Attributes: ${candidate.extractedAttributes.join(", ")}`,
-    `Body: ${candidate.rawText}`
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
-
 function buildLLMRerankerPrompt(
   plan: SearchPlan,
   selectedObject: DetectedObject | null | undefined,
@@ -295,39 +214,4 @@ function buildLLMRerankerPrompt(
     "- Use short, concrete reasons tied to style, category fit, material, silhouette, room use, or obvious visual mismatch.",
     "- Do not hallucinate missing dimensions or brand claims."
   ].join("\n");
-}
-
-function cosineSimilarity(left: number[], right: number[]) {
-  let dot = 0;
-  let leftNorm = 0;
-  let rightNorm = 0;
-
-  for (let index = 0; index < left.length; index += 1) {
-    const leftValue = left[index] ?? 0;
-    const rightValue = right[index] ?? 0;
-    dot += leftValue * rightValue;
-    leftNorm += leftValue * leftValue;
-    rightNorm += rightValue * rightValue;
-  }
-
-  if (leftNorm === 0 || rightNorm === 0) {
-    return 0;
-  }
-
-  return dot / (Math.sqrt(leftNorm) * Math.sqrt(rightNorm));
-}
-
-function normalizeRange(values: number[]) {
-  if (!values.length) {
-    return [];
-  }
-
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-
-  if (min === max) {
-    return values.map(() => 1);
-  }
-
-  return values.map((value) => (value - min) / (max - min));
 }

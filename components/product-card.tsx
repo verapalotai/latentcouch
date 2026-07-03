@@ -29,6 +29,49 @@ export function ProductCard({ product }: { product: ProductCandidate }) {
       <p className="mt-2 text-sm text-[var(--accent-strong)]">{product.priceText}</p>
 
       <p className="mt-3 text-sm text-[var(--muted)]">{product.matchReasons.join(" • ") || "Matched by title and extracted attributes."}</p>
+
+      {product.scoreBreakdown &&
+      (product.scoreBreakdown.embedding !== undefined ||
+        product.scoreBreakdown.lexical !== undefined) ? (
+        <div className="mt-3 space-y-1.5 border-t border-[var(--line)] pt-3">
+          <ScoreBar label="Semantic" value={product.scoreBreakdown.embedding ?? 0} tone="accent" />
+          <ScoreBar label="Keyword" value={product.scoreBreakdown.lexical ?? 0} tone="muted" />
+        </div>
+      ) : null}
     </a>
+  );
+}
+
+function ScoreBar({
+  label,
+  value,
+  tone
+}: {
+  label: string;
+  value: number;
+  tone: "accent" | "muted";
+}) {
+  const pct = Math.round(Math.max(0, Math.min(1, value)) * 100);
+  return (
+    <div className="flex items-center gap-2">
+      <span className="w-16 flex-none text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+        {label}
+      </span>
+      <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/5">
+        <span
+          className="block h-full rounded-full"
+          style={{
+            width: `${pct}%`,
+            backgroundColor:
+              tone === "accent"
+                ? "var(--accent)"
+                : "color-mix(in srgb, var(--muted) 55%, transparent)"
+          }}
+        />
+      </span>
+      <span className="w-7 flex-none text-right text-[10px] tabular-nums text-[var(--muted)]">
+        {pct}
+      </span>
+    </div>
   );
 }

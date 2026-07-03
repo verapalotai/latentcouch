@@ -1,0 +1,69 @@
+{
+  "_note": "Labeled reranker eval set. relevance: 3=ideal, 2=good, 1=weak, 0=off. Several relevant items have Hungarian-only titles that lexical token-overlap misses — that's where multilingual embeddings should win. Regenerate/extend from real scrapes with scripts/capture-candidates.",
+  "cases": [
+    {
+      "name": "boucle cream armchair (living room)",
+      "plan": {
+        "objectLabel": "Accent armchair",
+        "objectCategory": "armchair",
+        "broadQuery": "boucle accent armchair cream oak legs",
+        "roomContext": "living_room",
+        "mustHave": ["armchair", "upholstered"],
+        "niceToHave": ["boucle", "cream", "oak legs", "rounded"],
+        "avoid": ["black leather", "glossy"],
+        "queryRationale": "Warm-minimalist armchair in boucle/cream with oak legs.",
+        "retailerQueries": [{ "retailer": "ikea", "query": "boucle armchair" }]
+      },
+      "inspiration": {
+        "styleKeywords": ["warm minimalist", "scandi"],
+        "colorPalette": ["cream", "oatmeal", "warm oak"],
+        "materials": ["boucle", "oak", "wool"],
+        "shapeKeywords": ["rounded", "soft"],
+        "vibeNotes": ["calm", "tactile"],
+        "avoidKeywords": ["cold grey", "chrome"],
+        "shoppingSummary": "Warm neutrals, boucle and oak, soft rounded silhouettes."
+      },
+      "candidates": [
+        { "relevance": 3, "retailer": "ikea", "title": "OSKARSHAMN Armchair, bouclé off-white", "priceText": "€199", "priceValue": 199, "currency": "EUR", "url": "https://example.com/c1", "imageUrl": null, "extractedAttributes": ["boucle", "white"], "matchReasons": [], "confidence": 0.5, "rawText": "OSKARSHAMN Armchair bouclé off-white wooden legs" },
+        { "relevance": 3, "retailer": "bonami", "title": "Buklé fotel krémszínű, tölgy lábakkal", "priceText": "24 900 Ft", "priceValue": 24900, "currency": "HUF", "url": "https://example.com/c2", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Buklé fotel krémszínű tölgyfa lábakkal kerekített" },
+        { "relevance": 2, "retailer": "bonami", "title": "Bézs bársony fotel arany lábakkal", "priceText": "29 900 Ft", "priceValue": 29900, "currency": "HUF", "url": "https://example.com/c3", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Bézs bársony fotel arany lábakkal puha" },
+        { "relevance": 2, "retailer": "ikea", "title": "POÄNG Armchair, birch veneer/beige", "priceText": "€129", "priceValue": 129, "currency": "EUR", "url": "https://example.com/c4", "imageUrl": null, "extractedAttributes": ["beige"], "matchReasons": [], "confidence": 0.5, "rawText": "POÄNG Armchair birch veneer beige cushion" },
+        { "relevance": 1, "retailer": "bonami", "title": "STRANDMON fekete bőr füles fotel", "priceText": "89 900 Ft", "priceValue": 89900, "currency": "HUF", "url": "https://example.com/c5", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "STRANDMON fekete bőr füles fotel klasszikus" },
+        { "relevance": 0, "retailer": "bonami", "title": "Kerek dohányzóasztal tölgyfa", "priceText": "39 900 Ft", "priceValue": 39900, "currency": "HUF", "url": "https://example.com/c6", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Kerek dohányzóasztal tölgyfa 80 cm" },
+        { "relevance": 0, "retailer": "bonami", "title": "Szürke szövet kanapé, 3 személyes", "priceText": "149 900 Ft", "priceValue": 149900, "currency": "HUF", "url": "https://example.com/c7", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Szürke szövet kanapé 3 személyes modern" },
+        { "relevance": 0, "retailer": "bonami", "title": "LED állólámpa fekete", "priceText": "19 900 Ft", "priceValue": 19900, "currency": "HUF", "url": "https://example.com/c8", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "LED állólámpa fekete állítható" }
+      ]
+    },
+    {
+      "name": "round oak coffee table",
+      "plan": {
+        "objectLabel": "Coffee table",
+        "objectCategory": "coffee_table",
+        "broadQuery": "round oak coffee table",
+        "roomContext": "living_room",
+        "mustHave": ["coffee table", "round"],
+        "niceToHave": ["oak", "wood", "light"],
+        "avoid": ["glass", "black metal"],
+        "queryRationale": "Round light-oak coffee table.",
+        "retailerQueries": [{ "retailer": "ikea", "query": "round coffee table oak" }]
+      },
+      "inspiration": {
+        "styleKeywords": ["scandi", "minimalist"],
+        "colorPalette": ["light oak", "natural wood"],
+        "materials": ["oak", "wood"],
+        "shapeKeywords": ["round", "organic"],
+        "vibeNotes": ["warm", "simple"],
+        "avoidKeywords": ["glass", "chrome"],
+        "shoppingSummary": "Round, light oak, warm and simple."
+      },
+      "candidates": [
+        { "relevance": 3, "retailer": "bonami", "title": "Kerek dohányzóasztal tölgyfa, natúr", "priceText": "44 900 Ft", "priceValue": 44900, "currency": "HUF", "url": "https://example.com/d1", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Kerek dohányzóasztal tölgyfa natúr 80 cm skandináv" },
+        { "relevance": 3, "retailer": "ikea", "title": "LISTERBY Coffee table, oak veneer round", "priceText": "€149", "priceValue": 149, "currency": "EUR", "url": "https://example.com/d2", "imageUrl": null, "extractedAttributes": ["oak", "round"], "matchReasons": [], "confidence": 0.5, "rawText": "LISTERBY Coffee table oak veneer round" },
+        { "relevance": 1, "retailer": "ikea", "title": "STOCKHOLM Coffee table, walnut rectangular", "priceText": "€249", "priceValue": 249, "currency": "EUR", "url": "https://example.com/d3", "imageUrl": null, "extractedAttributes": ["walnut"], "matchReasons": [], "confidence": 0.5, "rawText": "STOCKHOLM Coffee table walnut veneer rectangular" },
+        { "relevance": 0, "retailer": "bonami", "title": "Üveg dohányzóasztal fekete fém lábakkal", "priceText": "59 900 Ft", "priceValue": 59900, "currency": "HUF", "url": "https://example.com/d4", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Üveg dohányzóasztal fekete fém lábakkal modern" },
+        { "relevance": 0, "retailer": "bonami", "title": "Buklé fotel krémszínű", "priceText": "24 900 Ft", "priceValue": 24900, "currency": "HUF", "url": "https://example.com/d5", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Buklé fotel krémszínű tölgy lábakkal" },
+        { "relevance": 2, "retailer": "bonami", "title": "Világos tölgy kerek lerakóasztal", "priceText": "34 900 Ft", "priceValue": 34900, "currency": "HUF", "url": "https://example.com/d6", "imageUrl": null, "extractedAttributes": [], "matchReasons": [], "confidence": 0.5, "rawText": "Világos tölgy kerek lerakóasztal kisasztal" }
+      ]
+    }
+  ]
+}

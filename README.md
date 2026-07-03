@@ -14,6 +14,43 @@ no API key, no scraping, instant. Live scraping of the retailers uses Playwright
 runs locally (see below); on a serverless host the search step degrades gracefully to the
 search plan plus per-store status.
 
+## Ranking & multilingual reranking
+
+Scraped product cards are ranked in stages:
+
+1. **Lexical scorer** (`lib/ranking/rank-candidates.ts`) — keyword/category overlap, already
+   multilingual via a hand-built EN→HU glossary in `lib/shopping-taxonomy.ts`.
+2. **Local multilingual embedding reranker** (`lib/ranking/embedding-rerank.ts`) — embeds the
+   query and each candidate with a local model (default `Xenova/multilingual-e5-small`, via
+   Transformers.js, no API/no cost) and blends cosine similarity with the lexical score. This
+   is what matches English inspiration cues against Hungarian product titles.
+3. **Optional LLM reranker** (`lib/openai/rerank-products.ts`) — a final vision-aware pass when
+   an OpenAI key is set. Skipped gracefully otherwise.
+
+Each product card shows the **Semantic** vs **Keyword** contribution so the embedding signal
+is visible (demo mode reads these from the fixture).
+
+The embedding model runs in-process via onnxruntime-node, which needs the Node arch to match
+its installed binary (arm64). In the live server it is **opt-in** — set `RERANK_EMBEDDINGS=1`
+on a compatible (arm64) Node. Left off (the default), the app ranks with lexical + the optional
+LLM pass and never loads the native module, so an x64/Rosetta Node can't crash it. The eval
+harness below runs the reranker directly regardless of the flag.
+
+### Evaluating the reranker
+
+A labeled eval set (`lib/ranking/eval/sample.json`) and harness compare lexical-only vs
+embedding-only vs blend on nDCG@5 / P@3 / MRR:
+
+```bash
+pnpm eval:rerank                                   # default model
+EMBEDDING_MODEL=Xenova/bge-m3 pnpm eval:rerank     # try a heavier model
+```
+
+The first run downloads the model (~110 MB, cached) and needs an **arm64 Node** (onnxruntime-node
+has no usable binary under x64/Rosetta; on x64 the reranker degrades to the lexical order, so the
+rows print identically). The sharp question it answers: do learned multilingual embeddings beat a
+curated keyword glossary? Extend the dataset with real scrapes to make the read-out stronger.
+
 ## Stack
 
 - Next.js App Router
