@@ -27,30 +27,35 @@ export function StoreStatusList({
         const isFilterable = status.ok && status.resultCount > 0 && !status.manualSearchUrl;
         const isActive = activeRetailer === status.retailer;
 
-        const tileClass = `rounded-[1.25rem] border p-3 text-sm transition ${
-          isActive
-            ? "border-[var(--accent)] bg-[rgba(173,95,58,0.09)] shadow-[0_8px_24px_rgba(173,95,58,0.12)]"
-            : status.ok
-              ? "border-[color:rgba(64,96,79,0.22)] bg-[rgba(64,96,79,0.06)]"
-              : "border-[color:rgba(139,66,51,0.22)] bg-[rgba(139,66,51,0.06)]"
-        } ${isFilterable ? "cursor-pointer hover:-translate-y-0.5 hover:bg-white/85" : ""}`;
+        const variant = isActive
+          ? "border-transparent bg-[var(--accent)] text-white shadow-[0_10px_28px_rgba(187,108,63,0.30)]"
+          : status.ok
+            ? "border-[var(--line)] bg-white/70"
+            : "border-[var(--line)] bg-white/35";
+
+        const tileClass = `rounded-[1.25rem] border p-3 text-sm transition ${variant} ${
+          isFilterable ? "cursor-pointer hover:-translate-y-0.5 hover:shadow-sm" : ""
+        }`;
 
         const content = (
           <>
             <p className="font-semibold capitalize">{status.retailer}</p>
-            <p className="mt-1 text-[var(--muted)]">
-              {status.ok ? `${status.resultCount} cards extracted` : status.error || "No results"}
-            </p>
-            {!status.ok && status.manualSearchUrl ? (
+            {status.ok ? (
+              <p className={`mt-1 ${isActive ? "text-white/85" : "text-[var(--muted)]"}`}>
+                {status.resultCount} cards extracted
+              </p>
+            ) : status.manualSearchUrl ? (
               <a
-                className="mt-2 inline-flex rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-[var(--accent-strong)]"
+                className="mt-2 inline-flex rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs font-semibold text-[var(--accent-strong)] transition hover:bg-white"
                 href={status.manualSearchUrl}
                 rel="noreferrer"
                 target="_blank"
               >
                 Open store search
               </a>
-            ) : null}
+            ) : (
+              <p className="mt-1 text-[var(--muted)]">No results</p>
+            )}
           </>
         );
 
